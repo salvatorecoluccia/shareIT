@@ -1,0 +1,59 @@
+.col-centered {
+	float: none;
+	margin: 0 auto;
+}
+
+/* @font-face {
+	font-family: 'FontAwesome';
+	src: url("#{resource['fonts:fontawesome-webfont.eot']}");
+	src: url("#{resource['fonts:fontawesome-webfont.eot']}")
+		format('embedded-opentype'),
+		url("#{resource['fonts:fontawesome-webfont.woff2']}")
+		format('woff2'),
+		url("#{resource['fonts:fontawesome-webfont.woff']}")
+		format('woff'),
+		url("#{resource['fonts:fontawesome-webfont.ttf']}")
+		format('truetype'),
+		url("#{resource['fonts:fontawesome-webfont.svg']}")
+		format('svg');
+	font-weight: normal;
+	font-style: normal;
+} */
+
+* {
+	font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+	padding-top: 70px;
+	background: url("#{resource['images:background_big.jpg']}");
+}
+
+a:hover {
+	color: #e69700 !important;
+	text-decoration: none !important;
+}
+
+.wood_background {
+	background: url("#{resource['images:background_small.png']}");
+}
+
+.customDock .ui-widget-header {
+	background: transparent;
+	font-weight: bold;
+	border: 0px;
+}
+
+.customDock .ui-widget-header a {
+	color: black !important;
+}
+
+
+#growl_container{
+	z-index: 9999 !important;
+}
+
+.ui-dock-top{
+	z-index: 9997 !important;
+}

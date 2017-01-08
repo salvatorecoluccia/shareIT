@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="ShareItEAR">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="ShareItDataModel.jar" deploy-path="/lib" handle="module:/resource/ShareItDataModel/ShareItDataModel">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ShareItServicesEJBClient.jar" deploy-path="/" handle="module:/resource/ShareItServicesEJBClient/ShareItServicesEJBClient">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ShareIt.war" deploy-path="/" handle="module:/resource/ShareIt/ShareIt">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ShareItDataAccess.jar" deploy-path="/lib" handle="module:/resource/ShareItDataAccess/ShareItDataAccess">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ShareItServicesEJB.jar" deploy-path="/" handle="module:/resource/ShareItServicesEJB/ShareItServicesEJB">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ShareItDBModel.jar" deploy-path="/lib" handle="module:/resource/ShareItDBModel/ShareItDBModel">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-collections4-4.1.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/apacheCommon/commons-collections4-4.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jul-to-slf4j-1.7.21.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/logging/jul-to-slf4j-1.7.21.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-discovery-0.4.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/apacheCommon/commons-discovery-0.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-log4j12-1.7.2.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/logging/slf4j-log4j12-1.7.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-beanutils-1.8.3.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/apacheCommon/commons-beanutils-1.8.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-logging-1.1.1.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/apacheCommon/commons-logging-1.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-collections-3.2.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/apacheCommon/commons-collections-3.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-digester-1.8.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/apacheCommon/commons-digester-1.8.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-lang3-3.3.2.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/apacheCommon/commons-lang3-3.3.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-api-1.7.2.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/logging/slf4j-api-1.7.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-io-2.4.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/apacheCommon/commons-io-2.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-lang-2.5.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/apacheCommon/commons-lang-2.5.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-codec-1.3.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/apacheCommon/commons-codec-1.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-fileupload-1.2.2.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/apacheCommon/commons-fileupload-1.2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="log4j-1.2.17.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/logging/log4j-1.2.17.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mybatis-3.1.1.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/myBatis/mybatis-3.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ColucciaCommon.jar" deploy-path="/lib" handle="module:/resource/ColucciaCommon/ColucciaCommon">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

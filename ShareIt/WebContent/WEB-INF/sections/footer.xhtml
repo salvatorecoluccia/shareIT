@@ -1,0 +1,25 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<footer class="footer-distributed navbar navbar-fixed-bottom">
+
+		<div class="footer-right">	
+			<h:graphicImage styleClass="img-logo-footer" library="images" name="logo.png" />
+		</div>
+
+		<div class="footer-left">
+			<p class="footer-links">
+				<p:link styleclass="navbar-brand" outcome="home"
+					value="#{bundleCommon['footer.link.home']}" />
+				.
+				<p:link styleclass="navbar-brand" outcome="profile"
+					value="#{bundleCommon['footer.link.profile']}" />
+			</p>
+
+			<p>#{bundleCommon['footer.label.company']}</p>
+		</div>
+
+	</footer>
+
+</ui:composition>

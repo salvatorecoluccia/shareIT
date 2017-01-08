@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="generator" content="Codeply" />
+
+	<ui:insert name="metadataSection" />
+	<f:loadBundle basename="it.coluccia.shareit.resources.CommonResources"
+		var="bundleCommon" />
+	<ui:insert name="bundle" />
+	<h:head>
+
+		<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+		<h:outputStylesheet library="css" name="footer-style.css"></h:outputStylesheet>
+		<h:outputStylesheet library="css" name="header-style.css"></h:outputStylesheet>
+		<h:outputStylesheet library="css" name="common-style.css"></h:outputStylesheet>
+
+		<h:outputStylesheet library="css" name="font-awesome.min.css"></h:outputStylesheet>
+
+		<h:outputScript library="primefaces" name="jquery/jquery.js"
+			target="head" />
+		<h:outputScript library="primefaces" name="jquery/jquery-plugins.js"
+			target="head" />
+
+		<h:outputScript library="js" name="jquery.easing.min.js"></h:outputScript>
+<!-- 		<h:outputScript library="js" name="jquery-3.1.1.min.js"></h:outputScript> -->
+		<h:outputScript library="js" name="bootstrap.js"></h:outputScript>
+		<h:outputScript library="js" name="myScripts.js"></h:outputScript>
+
+		<ui:insert name="headSection" />
+
+
+	</h:head>
+	<h:body>
+		<p:growl style="z-index: 9999;" id="growl" sticky="true" showDetail="true" life="3000" autoUpdate="true" />
+		<ui:insert name="sectionBody" />
+	</h:body>
+</f:view>
+</html>

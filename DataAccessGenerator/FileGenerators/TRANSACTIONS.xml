@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<classPathEntry
+		location="C:\workspaces_personali\Workspace_shareIt\ShareItLibraries\jdbc\ojdbc7.jar" />
+	
+
+	<context id="OracleTables" targetRuntime="MyBatis3">
+	
+		<plugin type ="org.mybatis.generator.plugins.SerializablePlugin">
+		</plugin>
+		<plugin type ="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin">
+		</plugin>
+		<plugin type ="it.coluccia.mybatis.utility.ReplyLikeEscapePlugin">
+		</plugin>
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/shareitdb"
+			userId="root" password="">
+		</jdbcConnection>
+
+		<javaTypeResolver type="it.coluccia.mybatis.utility.ReplyTypeResolver">
+			<property name="forceBigDecimals" value="true" />
+			<property name="useReplyTypeResolver" value="true" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="it.coluccia.shareit.dto.transactions"
+			targetProject="C:\workspaces_personali\Workspace_shareIt\ShareItDBModel\src">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="it.coluccia.shareit.dao.transactions"
+			targetProject="C:\workspaces_personali\Workspace_shareIt\ShareItDataAccess\src">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER" targetPackage="it.coluccia.shareit.dao.transactions"
+			targetProject="C:\workspaces_personali\Workspace_shareIt\ShareItDataAccess\src">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		
+		<table schema="shareitdb" tableName="Transactions" >
+			<property name="runtimeTableName" value="Transactions"/>
+			<property name="runtimeSchema" value="shareitdb"/>
+		</table>
+		
+		
+		
+		
+
+	</context>
+	
+	
+</generatorConfiguration>

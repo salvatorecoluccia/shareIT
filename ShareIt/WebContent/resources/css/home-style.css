@@ -1,0 +1,45 @@
+.myDataScroller {
+	color: black !important;
+	background: rgba(235, 242, 245, 0.50);
+	width: 90% !important;
+	border-radius: 15px;
+	margin-bottom: 9em;
+}
+
+.myDataScroller .ui-widget-content {
+	background: rgba(235, 242, 245, 0.50);
+}
+
+.myDataScroller .ui-widget-header {
+	font-size: 1.5em !important;
+	color: white !important;
+}
+
+.myDataScroller table {
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 1em;
+	margin-top: 1em;
+}
+
+.labelSection {
+	font-weight: bolder !important;
+	font-size: 1em !important;
+}
+
+.titleSection {
+	font-size: 2em !important;
+	text-align: center !important;
+	background: rgba(46, 145, 233, 0.32);
+	width: 99%;
+	border-radius: 10px;
+}
+
+.informationSection div {
+	padding: 0px;
+}
+
+.myDataScroller .ui-panelgrid-content {
+	border: none;
+	border-radius: 8px;
+}

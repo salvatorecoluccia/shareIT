@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="ShareItServicesEJB">
+        <wb-resource deploy-path="/" source-path="/ejbModule" tag="defaultRootSource"/>
+        <dependent-module archiveName="ShareItServicesEJBClient.jar" deploy-path="/" handle="module:/resource/ShareItServicesEJBClient/ShareItServicesEJBClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ShareItDataAccess.jar" deploy-path="/" handle="module:/resource/ShareItDataAccess/ShareItDataAccess">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ShareItDBModel.jar" deploy-path="/" handle="module:/resource/ShareItDBModel/ShareItDBModel">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ShareItDataModel.jar" deploy-path="/" handle="module:/resource/ShareItDataModel/ShareItDataModel">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/ShareItServicesEJB/build/classes"/>
+    </wb-module>
+</project-modules>

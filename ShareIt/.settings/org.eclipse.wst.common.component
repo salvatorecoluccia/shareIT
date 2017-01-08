@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="ShareIt">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="ShareItDataModel.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ShareItDataModel/ShareItDataModel">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ShareItServicesEJBClient.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ShareItServicesEJBClient/ShareItServicesEJBClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="el-api.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ShareItLibraries/jsf/el-api.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="myfaces-impl-2.2.11.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ShareItLibraries/jsf/myfaces-impl-2.2.11.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="myfaces-api-2.2.11.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ShareItLibraries/jsf/myfaces-api-2.2.11.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="el-impl.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ShareItLibraries/jsf/el-impl.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="excite-bike-1.0.10.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ShareItLibraries/jsf-ui/excite-bike-1.0.10.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ColucciaCommon.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ColucciaCommon/ColucciaCommon">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="primefaces-6.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ShareItLibraries/jsf-ui/primefaces-6.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="ShareIt"/>
+        <property name="java-output-path" value="/ShareIt/build/classes"/>
+    </wb-module>
+</project-modules>

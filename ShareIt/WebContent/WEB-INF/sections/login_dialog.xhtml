@@ -1,0 +1,30 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:dialog header="" resizable="false" modal="true"
+		responsive="true" widgetVar="loginDialog" showEffect="fade"
+		hideEffect="fade" height="150" width="300">
+		<h:form id="login-dialog-form">
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="username" value="Username:" />
+				<p:inputText id="username" value="#{loginBean.username}"
+					required="true" label="username" />
+
+				<h:outputLabel for="password" value="Password:" />
+				<p:password id="password" value="#{loginBean.password}"
+					required="true" label="password" />
+
+				<f:facet name="footer">
+					<p:commandButton value="#{bundle['button.login']}" update="growl"
+						actionListener="#{loginBean.validateUserPassword}"
+						oncomplete="handleLoginRequest(xhr, status, args,'loginDialog')" />
+						<h:commandButton id="hiddenGotoHomeBtn" style="display:none;" action="home"/>
+				</f:facet>
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+
+
+</ui:composition>

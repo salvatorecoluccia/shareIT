@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<environments default="production">
+		<environment id="production">
+			<transactionManager type="MANAGED"> 
+				<property name="closeConnection" value="false"/> 
+			</transactionManager>
+			<dataSource type="JNDI">
+				<property name="data_source" value="Shareit" />
+			</dataSource>
+		</environment>
+
+	</environments>
+	<mappers>
+	
+		<mapper resource="it/coluccia/shareit/dao/users/shareitdb/UsersMapper.xml" />
+		<mapper resource="it/coluccia/shareit/dao/items/shareitdb/ItemsMapper.xml" />
+		<mapper resource="it/coluccia/shareit/dao/categories/shareitdb/CategoriesMapper.xml" />
+
+	</mappers>
+
+</configuration>

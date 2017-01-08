@@ -1,0 +1,48 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:dialog header="" resizable="false" modal="true" responsive="true"
+		widgetVar="signInDialog" showEffect="fade" hideEffect="fade"
+		height="150" width="300">
+		<h:form id="signIn-dialog-form">
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="firstNameRegister" value="FirstName:" />
+				<p:inputText id="firstNameRegister"
+					value="#{loginBean.firstNameRegister}" required="true"
+					label="firstName" />
+
+				<h:outputLabel for="lastNameRegister" value="LastName:" />
+				<p:inputText id="lastNameRegister"
+					value="#{loginBean.lastNameRegister}" required="true"
+					label="lastName" />
+
+				<h:outputLabel for="emailRegister" value="Email:" />
+				<p:inputText id="emailRegister"
+					value="#{loginBean.emailRegister}" required="true"
+					label="email" />
+
+				<h:outputLabel for="usernameRegister" value="Username:" />
+				<p:inputText id="usernameRegister"
+					value="#{loginBean.usernameRegister}" required="true"
+					label="username" />
+
+				<h:outputLabel for="passwordRegister" value="Password:" />
+				<p:password id="passwordRegister"
+					value="#{loginBean.passwordRegister}" required="true"
+					label="password" />
+
+				<f:facet name="footer">
+					<p:commandButton value="#{bundle['button.login']}" update="growl"
+						actionListener="#{loginBean.validateUserPassword}"
+						oncomplete="handleLoginRequest(xhr, status, args,'loginDialog')" />
+					<h:commandButton id="hiddenGotoHomeBtn" style="display:none;"
+						action="home" />
+				</f:facet>
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+
+
+</ui:composition>

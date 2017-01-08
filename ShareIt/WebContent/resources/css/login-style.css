@@ -1,0 +1,19 @@
+.centerRightButton {
+	display: block !important;
+	margin-right: 1em !important;
+	margin-left: auto !important;
+	border-radius: 20px;
+	width: 10em;
+	height: 5em;
+	text-transform: uppercase;
+}
+
+.centerLeftButton {
+	display: block !important;
+	margin-right: auto !important;
+	margin-left: 1em !important;
+	border-radius: 20px;
+	width: 10em;
+	height: 5em;
+	text-transform: uppercase;
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<f:view>
+	<f:loadBundle basename="it.coluccia.shareit.resources.CommonResources"
+		var="bundleCommon" />
+	<h:head>
+		<h:outputStylesheet library="css" name="error-style.css"></h:outputStylesheet>
+		<h:outputStylesheet library="css" name="bootstrap.css"></h:outputStylesheet>
+	</h:head>
+	<h:body class="errorBody">
+
+		<header>		
+		 	<ui:include src="../sections/header.xhtml" />
+		</header>
+
+		<div class="title-error">
+			<ui:insert name="title_error" />
+		</div>
+
+		<div class="description-error">
+			<ui:insert name="description_error" />
+		</div>
+
+		<div class="button-error">
+			<ui:insert name="button_error" />
+		</div>
+
+	</h:body>
+</f:view>
+
+</html>

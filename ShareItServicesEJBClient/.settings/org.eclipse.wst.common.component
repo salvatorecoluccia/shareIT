@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="ShareItServicesEJBClient">
+        <wb-resource deploy-path="/" source-path="/ejbClientModule" tag="defaultRootSource"/>
+        <dependent-module archiveName="ShareItDataModel.jar" deploy-path="/" handle="module:/resource/ShareItDataModel/ShareItDataModel">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ColucciaCommon.jar" deploy-path="/" handle="module:/resource/ColucciaCommon/ColucciaCommon">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/ShareItServicesEJBClient/build/classes"/>
+    </wb-module>
+</project-modules>

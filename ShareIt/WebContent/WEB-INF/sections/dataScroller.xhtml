@@ -1,0 +1,73 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form>
+		<p:dataScroller widgetVar="ItemsdataScroller"
+			value="#{dataScrollerBean.items}" var="item" chunkSize="10"
+			scrollHeight="500" rowIndexVar="index"
+			styleClass="myDataScroller center-block">
+			<f:facet name="header">
+            	#{bundleDataSource['datascroller.label.header']}
+        	</f:facet>
+
+			<div class="center-block" style="width: 100%; margin-bottom: 1em;">
+				<p:panelGrid columns="2" layout="grid" columnClasses="image,detail">
+
+					<p:outputPanel>qui va immagine</p:outputPanel>
+					<ui:remove>
+						<p:graphicImage name="#{item.imageUri}" />
+					</ui:remove>
+
+					<p:outputPanel>
+
+						<div class="row titleSection">
+							<div class="col-xs-12">#{item.name}</div>
+						</div>
+						<br></br>
+						<div class="row informationSection">
+							<div class="col-xs-6">
+								<div class="col-xs-6 labelSection">
+									#{bundleDataSource['datascroller.label.priceCredit']}</div>
+								<div class="col-xs-6">#{item.priceCredit}</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="col-xs-6 labelSection">#{bundleDataSource['datascroller.label.categoryCode']}</div>
+								<div class="col-xs-6">#{item.categoryCode}</div>
+							</div>
+						</div>
+
+						<div class="row informationSection">
+							<div class="col-xs-3 labelSection">
+								#{bundleDataSource['datascroller.label.publishDate']}</div>
+							<div class="col-xs-9">
+								<h:outputText value="#{item.publishDate}">
+									<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+								</h:outputText>
+							</div>
+						</div>
+
+						<ui:remove>
+							<div class="row descriptionSection">
+								<div class="col-xs-3 labelSection">
+									#{bundleDataSource['datascroller.label.description']}</div>
+								<div class="col-xs-9">#{item.description}</div>
+							</div>
+						</ui:remove>
+						
+						<div class="row descriptionButton">
+							<p:commandButton style="float:right;margin-right: 10px;border-radius: 10px;"
+								value="#{bundleDataSource['datascroller.button.goToDetails']}"
+								action="#{dataScrollerBean.goToDetailsPage(item.id)}"
+								styleClass="ui-priority-primary" />
+						</div>
+
+					</p:outputPanel>
+
+				</p:panelGrid>
+			</div>
+		</p:dataScroller>
+	</h:form>
+
+</ui:composition>

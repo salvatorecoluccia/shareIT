@@ -1,0 +1,20 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="../WEB-INF/template/templateError.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	
+	
+	<ui:define name="title_error">
+		#{bundleCommon['title.error.expired']}
+	</ui:define>
+	
+	<ui:define name="description_error">
+		#{bundleCommon['description.error.expired']}
+	</ui:define>
+	
+	<ui:define name="button_error">
+		<p:button outcome="login" value="#{bundleCommon['button.goto.login']}"/>
+	</ui:define>
+
+	
+	
+</ui:composition>

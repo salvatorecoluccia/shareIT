@@ -1,0 +1,22 @@
+.customheader {
+	background: #1484e6
+		url(/ShareIt/faces/javax.faces.resource/images/ui-bg_diagonals-thick_22_1484e6_40x40.png?ln=primefaces-excite-bike)
+		50% 50% repeat;;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font-weight: bold;
+	z-index: 1006;
+}
+
+.custom-nav-header>a {
+	color: white !important;
+	font-size: 2em;
+}
+
+.custom-navbar-text {
+	color: white !important;
+	font-size: large !important;
+	font-style: italic;
+}

@@ -1,0 +1,14 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<nav class="navbar navbar-default navbar-fixed-top customheader">
+		<div class="container-fluid">
+			<div class="navbar-header custom-nav-header">
+				<p:link styleclass="navbar-brand" outcome="login"
+					value="#{bundleCommon['button.shareit']}" />
+			</div>
+			<p class="navbar-text custom-navbar-text">#{bundleCommon['label.description.shareit']}</p>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+</ui:composition>
