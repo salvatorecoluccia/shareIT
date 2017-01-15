@@ -5,6 +5,7 @@
 	template="../WEB-INF/template/template.xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="headSection">
@@ -40,64 +41,69 @@
 							<h:graphicImage alt="item-image" styleClass="img-item-detail"
 								library="images" name="#{itemDetailBean.item.imageUri}" />
 						</div>
-						<div class="col-xs-8 detailItemInfoSection">
-							<div class="col-xs-12">
-								<div class="col-xs-9 titleRow">
-									<h:outputText id="title" value="#{itemDetailBean.item.name}" />
-								</div>
-								<div class="col-xs-3">
-									<p:commandButton type="button" icon="fa fa-cart-arrow-down"
-										onclick=" var elem = $('.contactForm').eq(0);elem.show();elem = $('.contactForm')[0]; elem.scrollIntoView();"
-										styleClass="contactOwnerItemBtn" />
-								</div>
-							</div>
-							<p:separator styleClass="customSeparator" />
-							<div class="col-xs-12 priceRow">
-								<div class="col-xs-6" style="text-align: left">
-									<h:outputLabel for="price" style="font-weight:bolder;"
-										value="#{bundle['itemDetail.sections.title.price']}" />
-								</div>
-								<div class="col-xs-6">
-									<h:outputText id="price"
-										value="#{itemDetailBean.item.priceCredit}" />
-								</div>
-							</div>
-							<p:separator styleClass="customSeparator" />
-							<div class="col-xs-12 categoryRow">
-								<div class="col-xs-6" style="text-align: left">
-									<h:outputLabel for="category" style="font-weight:bolder;"
-										value="#{bundle['itemDetail.sections.title.category']}" />
-								</div>
-								<div class="col-xs-6">
-									<h:outputText id="category"
-										value="#{itemDetailBean.item.categoryCode}" />
-								</div>
-							</div>
-							<p:separator styleClass="customSeparator" />
-							<div class="col-xs-12 publishDateRow">
-								<div class="col-xs-6" style="text-align: left">
-									<h:outputLabel for="publishDate" style="font-weight:bolder;"
-										value="#{bundle['itemDetail.sections.title.publishDate']}" />
-								</div>
-								<div class="col-xs-6">
-									<h:outputText id="publishDate"
-										value="#{itemDetailBean.item.publishDate}">
-										<f:convertDateTime pattern="dd-MM-yyyy" />
-									</h:outputText>
-								</div>
-							</div>
-							<p:separator styleClass="customSeparator" />
-							<div class="col-xs-12 descriptionRow">
-								<div class="col-xs-12" style="text-align: left">
-									<h:outputLabel for="description" style="font-weight:bolder;"
-										value="#{bundle['itemDetail.sections.title.description']}" />
-								</div>
+
+						<h:panelGroup id="detailItemInfoSectionWrapper">
+							<div class="col-xs-8 detailItemInfoSection">
 								<div class="col-xs-12">
-									<h:outputText id="description"
-										value="#{itemDetailBean.item.description}" />
+									<div class="col-xs-9 titleRow">
+										<h:outputText id="title" value="#{itemDetailBean.item.name}" />
+									</div>
+									<div class="col-xs-3">
+										<p:commandButton rendered="#{itemDetailBean.item.active eq 1}"
+											type="button" icon="fa fa-cart-arrow-down"
+											onclick=" var elem = $('.contactForm').eq(0);elem.show();elem = $('.contactForm')[0]; elem.scrollIntoView();"
+											styleClass="contactOwnerItemBtn" />
+									</div>
+								</div>
+								<p:separator styleClass="customSeparator" />
+								<div class="col-xs-12 priceRow">
+									<div class="col-xs-6" style="text-align: left">
+										<h:outputLabel for="price" style="font-weight:bolder;"
+											value="#{bundle['itemDetail.sections.title.price']}" />
+									</div>
+									<div class="col-xs-6">
+										<h:outputText id="price"
+											value="#{itemDetailBean.item.priceCredit}" />
+									</div>
+								</div>
+								<p:separator styleClass="customSeparator" />
+								<div class="col-xs-12 categoryRow">
+									<div class="col-xs-6" style="text-align: left">
+										<h:outputLabel for="category" style="font-weight:bolder;"
+											value="#{bundle['itemDetail.sections.title.category']}" />
+									</div>
+									<div class="col-xs-6">
+										<h:outputText id="category"
+											value="#{itemDetailBean.item.categoryCode}" />
+									</div>
+								</div>
+								<p:separator styleClass="customSeparator" />
+								<div class="col-xs-12 publishDateRow">
+									<div class="col-xs-6" style="text-align: left">
+										<h:outputLabel for="publishDate" style="font-weight:bolder;"
+											value="#{bundle['itemDetail.sections.title.publishDate']}" />
+									</div>
+									<div class="col-xs-6">
+										<h:outputText id="publishDate"
+											value="#{itemDetailBean.item.publishDate}">
+											<f:convertDateTime pattern="dd-MM-yyyy" />
+										</h:outputText>
+									</div>
+								</div>
+								<p:separator styleClass="customSeparator" />
+								<div class="col-xs-12 descriptionRow">
+									<div class="col-xs-12" style="text-align: left">
+										<h:outputLabel for="description" style="font-weight:bolder;"
+											value="#{bundle['itemDetail.sections.title.description']}" />
+									</div>
+									<div class="col-xs-12">
+										<h:outputText id="description"
+											value="#{itemDetailBean.item.description}" />
+									</div>
 								</div>
 							</div>
-						</div>
+						</h:panelGroup>
+
 					</div>
 				</div>
 				<p:separator />
@@ -106,16 +112,18 @@
 						<div class="col-xs-12">
 							<p:commandButton icon="fa fa-cart-arrow-down"
 								value="#{bundle['itemDetail.button.buyItem']}"
-								update="msgTextArea"
+								update="msgTextArea,detailItemInfoSectionWrapper"
 								actionListener="#{itemDetailBean.buyItem}"
-								oncomplete=" var elem = $('.contactForm').eq(0);elem.hide(200);elem = $('.myItemDetailSection')[0]; elem.scrollIntoView();"
+								oncomplete=" var elem = $('.contactForm').eq(0);elem.hide();elem = $('.customDock')[0]; elem.scrollIntoView();"
 								styleClass="contactOwnerItemBtn" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-xs-12">
-							<p:inputTextarea id="msgTextArea" value="#{itemDetailBean.messageToBuy}" rows="7"
-								styleClass="message_input_area" maxlength="200" />
+							<p:inputTextarea id="msgTextArea"
+								value="#{itemDetailBean.messageToBuy}" rows="7"
+								styleClass="message_input_area" maxlength="200"
+								a:placeholder="#{bundle['itemDetail.textArea.message.placeholder']}" />
 						</div>
 					</div>
 				</div>

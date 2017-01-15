@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="../WEB-INF/template/template.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="headSection">
+		<h:outputStylesheet library="css" name="pages-style.css"></h:outputStylesheet>
+	</ui:define>
+
+	<ui:define name="bundle">
+		<f:loadBundle basename="#{addItemBean.bundleName}" var="bundle" />
+	</ui:define>
+
+	<ui:define name="title">
+		#{bundle['title.addItem.page']}
+</ui:define>
+
+	<ui:define name="sectionBody">
+		<header>
+			<ui:include src="../WEB-INF/sections/header.xhtml" />
+		</header>
+		<section>
+
+			<div class="customDock">
+				<p:dock position="top">
+					<p:menuitem value="#{bundleCommon['menu.dock.label.home']}"
+						icon="/resources/images/dock/home_dock.ico" url="/home/home.xhtml" />
+				</p:dock>
+			</div>
+			<h:form enctype="multipart/form-data">
+				<div class="container myAddItemSection">
+					<div class="row headerAddItemSection">
+						<h:outputText id="title"
+							value="#{bundle['addItem.sections.title']}" />
+					</div>
+					<div class="row addItemWizard">
+						<p:wizard flowListener="#{addItemBean.onFlowProcess}">
+							<p:tab id="general" title="General">
+								<p:panel header="#{bundle['addItem.wizard.header.general']}">
+									<p:messages />
+									<p:panelGrid columns="2"
+										columnClasses="firstColumnWizard,secondColumnWizard">
+										<h:outputText
+											value="#{bundle['addItem.wizard.general.title']}" />
+										<p:inputText value="#{addItemBean.newItem.name}"
+											requiredMessage="#{bundle['addItem.wizard.general.title.requiredMessage']}"
+											required="true"
+											label="#{bundle['addItem.wizard.general.title']}" />
+										<h:outputText
+											value="#{bundle['addItem.wizard.general.price']}" />
+										<p:inputNumber value="#{addItemBean.newItem.priceCredit}"
+											requiredMessage="#{bundle['addItem.wizard.general.price.requiredMessage']}"
+											symbol=" Credits" symbolPosition="s" decimalSeparator=","
+											thousandSeparator="." required="true" minValue="0.00"
+											maxValue="100000" />
+										<h:outputText
+											value="#{bundle['addItem.wizard.general.category']}" />
+										<p:selectOneMenu value="#{addItemBean.categoryNameSelected}"
+											panelStyle="width:180px" effect="fade" var="category"
+											style="width:160px" filter="true" required="true"
+											requiredMessage="#{bundle['addItem.wizard.general.category.requiredMessage']}"
+											filterMatchMode="startsWith">
+											<f:selectItems value="#{addItemBean.categoriesName}"
+												var="categoryName" itemLabel="#{categoryName}"
+												itemValue="#{categoryName}" />
+											<p:column>
+												<h:outputText value="#{category}" />
+											</p:column>
+										</p:selectOneMenu>
+										<h:outputText value="#{bundle['addItem.wizard.general.file']}" />
+										<p:fileUpload required="true"
+											invalidFileMessage="#{bundle['addItem.wizard.general.file.invalidMessage']}"
+											invalidSizeMessage="#{bundle['addItem.wizard.general.file.invalidSizeMessage']}"
+											fileLimitMessage="#{bundle['addItem.wizard.general.file.fileLimitMessage']}"
+											requiredMessage="#{bundle['addItem.wizard.general.file.requiredMessage']}"
+											fileLimit="1" sizeLimit="20971520"
+											skinSimple="true">
+											<p:fileUpload fileUploadListener="#{addItemBean.handleUploadEvent}" auto="true" />
+										</p:fileUpload>
+									</p:panelGrid>
+								</p:panel>
+							</p:tab>
+
+							<p:tab id="descriptionTab" title="Description">
+								<p:panel header="#{bundle['addItem.wizard.header.description']}">
+									<p:messages />
+									<h:panelGrid columns="2" columnClasses="label, value">
+										<h:outputText
+											value="#{bundle['addItem.wizard.description.label']}" />
+										<p:inputTextarea value="#{addItemBean.newItem.description}"
+											rows="10" counter="displayCharNum" maxlength="450"
+											counterTemplate="{0} characters remaining." style="width:90%"
+											a:placeholder="#{bundle['addItem.wizard.description.textarea.placeholder']}" />
+										<h:outputText id="displayCharNum" />
+									</h:panelGrid>
+								</p:panel>
+							</p:tab>
+
+							<p:tab id="confirmTab" title="Confirm">
+								<p:panel header="#{bundle['addItem.wizard.header.confirm']}">
+									<div class="row">
+										<div class="col-xs-12">
+											<div class="center-block">
+												<p:commandButton styleClass="myBigConfirmButton"
+													value="#{bundle['addItem.wizard.confirm.button.confirm']}"
+													actionListener="#{addItemBean.publish}" process="@this" />
+											</div>
+										</div>
+									</div>
+								</p:panel>
+							</p:tab>
+						</p:wizard>
+					</div>
+				</div>
+
+			</h:form>
+		</section>
+
+		<footer>
+			<ui:include src="../WEB-INF/sections/footer.xhtml" />
+		</footer>
+
+	</ui:define>
+
+</ui:composition>

@@ -47,3 +47,53 @@ descriptionRow #description {
 	margin-bottom: 10em !important;
 	width: 50%;
 }
+/*##########fine itemDetailPage*/
+.myAddItemSection {
+	color: black !important;
+	background: rgba(235, 242, 245, 0.50);
+	width: 90% !important;
+	border-radius: 15px;
+	font-size: 1.4em;
+	margin-bottom: 6em;
+	padding: 20px;
+}
+
+.myBigConfirmButton {
+	width: 200px;
+	height: 150px;
+}
+
+.headerAddItemSection {
+	font-size: 3em;
+	font-weight: bolder;
+}
+
+.fisrtColumnWizard {
+	color: #333;
+	font-size: 1.3em;
+	margin-bottom: 5px !important;
+}
+
+.secondColumnWizard {
+	margin-bottom: 5px !important;
+}
+
+.addItemWizard {
+	color: #333 !important;
+}
+
+.ui-wizard-content .ui-panel {
+	background: rgba(235, 242, 245, 0.50);
+}
+
+.ui-wizard-content .ui-panel table {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.ui-selectonemenu-trigger{
+	width: 20px !important;
+}
+.ui-selectonemenu-label{
+	margin: 2x !important;
+}

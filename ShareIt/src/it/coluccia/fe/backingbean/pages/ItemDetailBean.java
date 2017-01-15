@@ -24,6 +24,8 @@ public class ItemDetailBean extends BaseBean {
 
 	private final String KEY_TITLE_SERVICE_ERROR = "msg.title.error.service";
 	private final String KEY_BODY_RETRIEVE_ITEM_ERROR = "msg.body.error.service.retrieveItem";
+	private final String KEY_TITLE_BUY_OK  = "msg.title.success.buy";
+	private final String KEY_BODY_BUY_OK = "msg.body.success.buy";
 
 	private final String BUNDLE_FILE = "it.coluccia.shareit.resources.PagesResources";
 	private final String MAPPED_NAME = "itemDetailBean";
@@ -80,6 +82,7 @@ public class ItemDetailBean extends BaseBean {
 		try {
 			logger.debug("buyItem start");
 			serviceLocal.buyItem(loginBean.getUsername(),loginBean.getPassword(),this.item,messageToBuy);
+			FacesMessageUtils.addMessageInfoFromBundle(KEY_TITLE_BUY_OK, KEY_BODY_BUY_OK, getResourceBundle());
 		} catch (ServiceException e) {
 			logger.debug("erore durante buyItem",e);
 			FacesMessageUtils.addMessageErrorFromBundle(KEY_TITLE_SERVICE_ERROR, e.getMsgKey(), getResourceBundle());

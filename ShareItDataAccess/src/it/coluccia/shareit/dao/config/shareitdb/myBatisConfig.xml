@@ -19,6 +19,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="it/coluccia/shareit/dao/users/shareitdb/UsersMapper.xml" />
 		<mapper resource="it/coluccia/shareit/dao/items/shareitdb/ItemsMapper.xml" />
 		<mapper resource="it/coluccia/shareit/dao/categories/shareitdb/CategoriesMapper.xml" />
+		<mapper resource="it/coluccia/shareit/dao/transactions/shareitdb/TransactionsMapper.xml" />
 
 	</mappers>
 

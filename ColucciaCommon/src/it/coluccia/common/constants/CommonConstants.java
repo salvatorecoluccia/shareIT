@@ -12,4 +12,6 @@ public class CommonConstants {
 	public final static String FLG_TRUE = "1";
 	public final static String FLG_FALSE = "0";
 	
+	public final static String UPLOAD_IMAGE_PATH = "C:/workspaces_personali/local_git_repositories/ShareItRep/ShareIt/WebContent/resources/images/itemsUpload/";
+	
 }

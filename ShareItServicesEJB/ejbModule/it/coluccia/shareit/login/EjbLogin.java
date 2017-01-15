@@ -25,7 +25,7 @@ import it.coluccia.shareit.login.EjbLoginLocal;
 public class EjbLogin implements EjbLoginLocal {
 	
 	static{
-		String log4jConfPath = "C:/workspaces_personali/Workspace_shareIt/ShareIt_Config/log4j/log4j.properties";
+		String log4jConfPath = "C:/workspaces_personali/local_git_repositories/ShareItRep/ShareIt_Config/log4j/log4j.properties";
 		PropertyConfigurator.configure(log4jConfPath);
 	}
 

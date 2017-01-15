@@ -12,9 +12,11 @@ import org.apache.log4j.PropertyConfigurator;
 
 import it.coluccia.common.exception.ServiceException;
 import it.coluccia.common.helper.ServiceHelper;
+import it.coluccia.shareit.dao.categories.shareitdb.CategoriesMapper;
 import it.coluccia.shareit.dao.items.shareitdb.ItemsMapper;
 import it.coluccia.shareit.dao.transactions.shareitdb.TransactionsMapper;
 import it.coluccia.shareit.dao.users.shareitdb.UsersMapper;
+import it.coluccia.shareit.dto.categories.shareitdb.Categories;
 import it.coluccia.shareit.dto.items.shareitdb.Items;
 import it.coluccia.shareit.dto.items.shareitdb.ItemsExample;
 import it.coluccia.shareit.dto.transactions.shareitdb.Transactions;
@@ -25,7 +27,7 @@ import it.coluccia.shareit.dto.users.shareitdb.UsersExample;
 @LocalBean
 public class ShareItEjb implements ShareItEjbLocal {
 	static {
-		String log4jConfPath = "C:/workspaces_personali/Workspace_shareIt/ShareIt_Config/log4j/log4j.properties";
+		String log4jConfPath = "C:/workspaces_personali/local_git_repositories/ShareItRep/ShareIt_Config/log4j/log4j.properties";
 		PropertyConfigurator.configure(log4jConfPath);
 	}
 
@@ -121,5 +123,53 @@ public class ShareItEjb implements ShareItEjbLocal {
 			log.debug("Service buyItem end");
 		}
 		
+	}
+	
+	public List<Categories> retrieveCategories() throws ServiceException{
+		log.debug("Service retrieveCategories started");
+		List<Categories> result;
+		try {
+			ServiceHelper.openDataBaseSession();
+			CategoriesMapper mapper = ServiceHelper.getMapper(CategoriesMapper.class);
+			result = mapper.selectByExample(null);
+		} catch (Exception e) {
+			log.error("Errore durante retrieveCategories", e);
+			throw new ServiceException("Errore durante retrieveCategories", e);
+		} finally {
+			ServiceHelper.closeDataBaseSession();
+			log.debug("Service retrieveCategories end");
+		}
+		return result;
+	}
+	
+	public void publishItem(Items newItem, String username, String password) throws ServiceException{
+		log.debug("Service publishItem started");
+		Items result;
+		Date date = new Date();
+		try {
+			ServiceHelper.openDataBaseSession();
+			UsersMapper userMapper = ServiceHelper.getMapper(UsersMapper.class);
+			UsersExample query = new UsersExample();
+			query.createCriteria().andUsernameEqualTo(username).andPasswordEqualTo(password);
+			List<Users> tmpResults = userMapper.selectByExample(query);
+			if(tmpResults.isEmpty()){
+				log.error("Errore durante publishItem: non esistono utenti con user e password specificati.("+username+","+password+")");
+				throw new ServiceException(MSG_ERROR_BODY_USER_PASS_NOT_FOUND,true);
+			}
+			Integer ownerId = tmpResults.get(0).getId();
+
+			ItemsMapper mapper = ServiceHelper.getMapper(ItemsMapper.class);
+			newItem.setActive(Short.parseShort("1"));
+			newItem.setCreationDate(date);
+			newItem.setPublishDate(date);
+			newItem.setOwnerId(ownerId);
+			mapper.insertSelective(newItem);
+		} catch (Exception e) {
+			log.error("Errore durante publishItem", e);
+			throw new ServiceException("Errore durante publishItem", e);
+		} finally {
+			ServiceHelper.closeDataBaseSession();
+			log.debug("Service publishItem end");
+		}
 	}
 }

@@ -1,0 +1,222 @@
+package it.coluccia.fe.backingbean.pages;
+
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
+import org.apache.commons.lang3.StringUtils;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.FlowEvent;
+import org.primefaces.model.UploadedFile;
+
+import it.coluccia.common.constants.CommonConstants;
+import it.coluccia.common.exception.ServiceException;
+import it.coluccia.fe.backingbean.base.BaseBean;
+import it.coluccia.fe.backingbean.login.LoginBean;
+import it.coluccia.shareit.dto.categories.shareitdb.Categories;
+import it.coluccia.shareit.dto.items.shareitdb.Items;
+import it.coluccia.shareit.pages.ShareItEjbLocal;
+import it.common.fe.utils.FacesMessageUtils;
+
+@ViewScoped
+@ManagedBean(name = "addItemBean")
+public class AddItemBean extends BaseBean {
+
+	private final String KEY_TITLE_SERVICE_ERROR = "msg.title.error.service";
+	private final String KEY_BODY_RETRIEVE_CATEGORIES_ERROR = "msg.body.error.retrieve.categories";
+	private final String KEY_BODY_PUBLISH_ERROR = "msg.body.error.publish";
+	private final String KEY_BODY_PUBLISH_ERROR_NOT_COMPLETE = "msg.body.error.publish.not.complete";
+	private final String  KEY_BODY_UPLOAD_ERROR = "msg.body.error.upload";
+	
+	private Items newItem;
+	private String categoryNameSelected;
+	private List<Categories> categories;
+	private List<String> categoriesName;
+	private UploadedFile imageFile;
+
+	@EJB
+	private ShareItEjbLocal serviceLocal;
+	
+    @ManagedProperty(value="#{loginBean}")
+    private LoginBean loginBean;
+
+	private final String BUNDLE_FILE = "it.coluccia.shareit.resources.PagesResources";
+	private final String MAPPED_NAME = "addItemBean";
+	private final String MAPPED_PAGE = "addItem";
+
+	@PostConstruct
+	public void init() {
+		logger.debug("AddItemBean instanziato");
+		try {
+			logger.debug("retrieveCategories bean start");
+			categories = serviceLocal.retrieveCategories();
+			categoriesName = extractCategoriesName(categories);
+			this.newItem = new Items();
+		} catch (ServiceException e) {
+			logger.debug("erore durante retrieveCategories");
+			FacesMessageUtils.addMessageErrorFromBundle(KEY_TITLE_SERVICE_ERROR, KEY_BODY_RETRIEVE_CATEGORIES_ERROR,
+					getResourceBundle());
+		} finally {
+			logger.debug("retrieveCategories bean end");
+		}
+	}
+
+	@Override
+	public String getBundleName() {
+		return BUNDLE_FILE;
+	}
+
+	@Override
+	public String getMappedName() {
+		return MAPPED_NAME;
+	}
+
+	@Override
+	public String getMappedPage() {
+		return MAPPED_PAGE;
+	}
+	
+	private void uploadImage(){
+		logger.debug("uploadImage start");
+		if(imageFile != null){
+			try{
+				InputStream fileInputStream = imageFile.getInputstream();
+				String imageUriSuffix = UUID.randomUUID().toString();
+				String extensionFile = imageFile.getFileName();
+				File fileDestination = new File(CommonConstants.UPLOAD_IMAGE_PATH+imageFile.getFileName()+imageUriSuffix+"."+extensionFile);
+				Files.copy(fileInputStream, fileDestination.toPath());
+				this.newItem.setImageUri(fileDestination.getName());
+			}
+			catch(Exception e){
+				logger.debug("erore durante uploadImage");
+				FacesMessageUtils.addMessageErrorFromBundle(KEY_TITLE_SERVICE_ERROR, KEY_BODY_UPLOAD_ERROR,
+						getResourceBundle());
+			}
+		}
+	}
+
+	public void publish() {
+		logger.debug("publish start");
+		
+		//prima eseguo upload immagine
+		this.uploadImage();
+		
+		if (checkIfFieldAreConsistent()) {
+			try {
+				serviceLocal.publishItem(newItem,loginBean.getUsername(),loginBean.getPassword());
+			} catch (ServiceException e) {
+				logger.error("erore durante publish");
+				FacesMessageUtils.addMessageErrorFromBundle(KEY_TITLE_SERVICE_ERROR, KEY_BODY_PUBLISH_ERROR,
+						getResourceBundle());
+			} finally {
+				logger.debug("publish end");
+			}
+		} else {
+			logger.debug("erore durante publish: newItem non è settato correttamente");
+			FacesMessageUtils.addMessageErrorFromBundle(KEY_TITLE_SERVICE_ERROR, KEY_BODY_PUBLISH_ERROR_NOT_COMPLETE,
+					getResourceBundle());
+		}
+	}
+
+	private boolean checkIfFieldAreConsistent() {
+		if (this.newItem == null) {
+			return false;
+		}
+		if (this.newItem.getCategoryCode() == null || StringUtils.isEmpty(newItem.getDescription())
+				|| StringUtils.isEmpty(newItem.getName()) || newItem.getPriceCredit() == null
+				|| StringUtils.isEmpty(newItem.getImageUri())) {
+			return false;
+		}
+		return true;
+	}
+
+	private List<String> extractCategoriesName(List<Categories> cat) {
+		List<String> result = new ArrayList<>();
+		if (cat == null) {
+			return result;
+		}
+
+		for (Categories category : cat) {
+			result.add(category.getName());
+		}
+		return result;
+	}
+	
+	public void handleUploadEvent(FileUploadEvent event) {
+	    UploadedFile uploadedFile = event.getFile();
+	    this.setImageFile(event.getFile());
+	}
+
+	public String onFlowProcess(FlowEvent event) {
+		return event.getNewStep();
+	}
+
+	public Items getNewItem() {
+		return newItem;
+	}
+
+	public void setNewItem(Items newItem) {
+		this.newItem = newItem;
+	}
+
+	public String getCategoryNameSelected() {
+		return categoryNameSelected;
+	}
+
+	public void setCategoryNameSelected(String categoryNameSelected) {
+		this.categoryNameSelected = categoryNameSelected;
+		for (Categories cat : categories) {
+			if (cat.getName().equalsIgnoreCase(categoryNameSelected)) {
+				newItem.setCategoryCode(cat.getId());
+			}
+		}
+	}
+
+	public List<Categories> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Categories> categories) {
+		this.categories = categories;
+	}
+
+	public List<String> getCategoriesName() {
+		return categoriesName;
+	}
+
+	public void setCategoriesName(List<String> categoriesName) {
+		this.categoriesName = categoriesName;
+	}
+
+	public LoginBean getLoginBean() {
+		return loginBean;
+	}
+
+	public void setLoginBean(LoginBean loginBean) {
+		this.loginBean = loginBean;
+	}
+
+	public UploadedFile getImageFile() {
+		return imageFile;
+	}
+
+	public void setImageFile(UploadedFile imageFile) {
+		this.imageFile = imageFile;
+	}
+	
+	
+	
+	
+
+}
