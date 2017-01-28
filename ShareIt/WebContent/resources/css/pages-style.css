@@ -59,8 +59,12 @@ descriptionRow #description {
 }
 
 .myBigConfirmButton {
-	width: 200px;
-	height: 150px;
+	width: 200px !important;
+	height: 150px !important;
+	border-radius: 90px !important;
+	display: block !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
 }
 
 .headerAddItemSection {
@@ -76,10 +80,19 @@ descriptionRow #description {
 
 .secondColumnWizard {
 	margin-bottom: 5px !important;
+	width:90%;
+}
+.secondColumnWizard > input{
+	width: 80%;
 }
 
 .addItemWizard {
 	color: #333 !important;
+}
+
+.addItemWizard tr {
+	border: 1px solid transparent !important;
+    background: transparent !important;
 }
 
 .ui-wizard-content .ui-panel {
@@ -96,4 +109,13 @@ descriptionRow #description {
 }
 .ui-selectonemenu-label{
 	margin: 2x !important;
+}
+
+.value{
+	width:80%;
+}
+
+.label{
+	color:black !important;
+	font-size: 1em !important;
 }

@@ -16,6 +16,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.model.UploadedFile;
@@ -23,6 +24,7 @@ import org.primefaces.model.UploadedFile;
 import it.coluccia.common.constants.CommonConstants;
 import it.coluccia.common.exception.ServiceException;
 import it.coluccia.fe.backingbean.base.BaseBean;
+import it.coluccia.fe.backingbean.home.HomeBean;
 import it.coluccia.fe.backingbean.login.LoginBean;
 import it.coluccia.shareit.dto.categories.shareitdb.Categories;
 import it.coluccia.shareit.dto.items.shareitdb.Items;
@@ -37,8 +39,12 @@ public class AddItemBean extends BaseBean {
 	private final String KEY_BODY_RETRIEVE_CATEGORIES_ERROR = "msg.body.error.retrieve.categories";
 	private final String KEY_BODY_PUBLISH_ERROR = "msg.body.error.publish";
 	private final String KEY_BODY_PUBLISH_ERROR_NOT_COMPLETE = "msg.body.error.publish.not.complete";
-	private final String  KEY_BODY_UPLOAD_ERROR = "msg.body.error.upload";
-	
+	private final String KEY_BODY_UPLOAD_ERROR = "msg.body.error.upload";
+	private final String KEY_BODY_COMPILE_WARNING = "msg.body.warning.compile.incomplete";
+	private final String KEY_TITLE_SERVICE_WARNING = "msg.title.warning.incomplete";
+	private final String KEY_TITLE_SERVICE_SUCCESS = "msg.title.service.success";
+	private final String KEY_BODY_PUBLISH_SUCCESS = "msg.body.publish.success";
+
 	private Items newItem;
 	private String categoryNameSelected;
 	private List<Categories> categories;
@@ -47,9 +53,9 @@ public class AddItemBean extends BaseBean {
 
 	@EJB
 	private ShareItEjbLocal serviceLocal;
-	
-    @ManagedProperty(value="#{loginBean}")
-    private LoginBean loginBean;
+
+	@ManagedProperty(value = "#{loginBean}")
+	private LoginBean loginBean;
 
 	private final String BUNDLE_FILE = "it.coluccia.shareit.resources.PagesResources";
 	private final String MAPPED_NAME = "addItemBean";
@@ -86,19 +92,19 @@ public class AddItemBean extends BaseBean {
 	public String getMappedPage() {
 		return MAPPED_PAGE;
 	}
-	
-	private void uploadImage(){
+
+	private void uploadImage() {
 		logger.debug("uploadImage start");
-		if(imageFile != null){
-			try{
+		if (imageFile != null) {
+			try {
 				InputStream fileInputStream = imageFile.getInputstream();
 				String imageUriSuffix = UUID.randomUUID().toString();
 				String extensionFile = imageFile.getFileName();
-				File fileDestination = new File(CommonConstants.UPLOAD_IMAGE_PATH+imageFile.getFileName()+imageUriSuffix+"."+extensionFile);
+				File fileDestination = new File(CommonConstants.UPLOAD_IMAGE_PATH + imageFile.getFileName()
+						+ imageUriSuffix + "." + extensionFile);
 				Files.copy(fileInputStream, fileDestination.toPath());
 				this.newItem.setImageUri(fileDestination.getName());
-			}
-			catch(Exception e){
+			} catch (Exception e) {
 				logger.debug("erore durante uploadImage");
 				FacesMessageUtils.addMessageErrorFromBundle(KEY_TITLE_SERVICE_ERROR, KEY_BODY_UPLOAD_ERROR,
 						getResourceBundle());
@@ -108,13 +114,17 @@ public class AddItemBean extends BaseBean {
 
 	public void publish() {
 		logger.debug("publish start");
-		
-		//prima eseguo upload immagine
+
+		// prima eseguo upload immagine
 		this.uploadImage();
-		
+
 		if (checkIfFieldAreConsistent()) {
 			try {
-				serviceLocal.publishItem(newItem,loginBean.getUsername(),loginBean.getPassword());
+				serviceLocal.publishItem(newItem, loginBean.getUsername(), loginBean.getPassword());
+				RequestContext.getCurrentInstance().addCallbackParam(
+						"insertSuccess", true); 
+				FacesMessageUtils.addMessageInfoFromBundle(KEY_TITLE_SERVICE_SUCCESS, KEY_BODY_PUBLISH_SUCCESS,
+						getResourceBundle());
 			} catch (ServiceException e) {
 				logger.error("erore durante publish");
 				FacesMessageUtils.addMessageErrorFromBundle(KEY_TITLE_SERVICE_ERROR, KEY_BODY_PUBLISH_ERROR,
@@ -127,6 +137,11 @@ public class AddItemBean extends BaseBean {
 			FacesMessageUtils.addMessageErrorFromBundle(KEY_TITLE_SERVICE_ERROR, KEY_BODY_PUBLISH_ERROR_NOT_COMPLETE,
 					getResourceBundle());
 		}
+	}
+	
+	public String goToHome(){
+		logger.debug("..redirecting to Home page");
+		return HomeBean.getStaticMappedPage();
 	}
 
 	private boolean checkIfFieldAreConsistent() {
@@ -152,13 +167,19 @@ public class AddItemBean extends BaseBean {
 		}
 		return result;
 	}
-	
+
 	public void handleUploadEvent(FileUploadEvent event) {
-	    UploadedFile uploadedFile = event.getFile();
-	    this.setImageFile(event.getFile());
+		UploadedFile uploadedFile = event.getFile();
+		this.setImageFile(event.getFile());
 	}
 
 	public String onFlowProcess(FlowEvent event) {
+		logger.debug("onFlowProcess start, eventPhase: " + event.getPhaseId());
+/*		if (this.newItem.getCategoryCode() == null || StringUtils.isEmpty(newItem.getName())
+				|| newItem.getPriceCredit() == null || StringUtils.isEmpty(newItem.getImageUri())) {
+			FacesMessageUtils.addMessageWarningFromBundle(KEY_TITLE_SERVICE_WARNING, KEY_BODY_COMPILE_WARNING,
+					getResourceBundle());
+		}*/
 		return event.getNewStep();
 	}
 
@@ -214,9 +235,5 @@ public class AddItemBean extends BaseBean {
 	public void setImageFile(UploadedFile imageFile) {
 		this.imageFile = imageFile;
 	}
-	
-	
-	
-	
 
 }

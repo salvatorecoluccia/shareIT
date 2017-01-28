@@ -42,7 +42,9 @@
 						<p:wizard flowListener="#{addItemBean.onFlowProcess}">
 							<p:tab id="general" title="General">
 								<p:panel header="#{bundle['addItem.wizard.header.general']}">
-									<p:messages />
+									<ui:remove>
+										<p:messages />
+									</ui:remove>
 									<p:panelGrid columns="2"
 										columnClasses="firstColumnWizard,secondColumnWizard">
 										<h:outputText
@@ -62,7 +64,7 @@
 											value="#{bundle['addItem.wizard.general.category']}" />
 										<p:selectOneMenu value="#{addItemBean.categoryNameSelected}"
 											panelStyle="width:180px" effect="fade" var="category"
-											style="width:160px" filter="true" required="true"
+											filter="true" required="true"
 											requiredMessage="#{bundle['addItem.wizard.general.category.requiredMessage']}"
 											filterMatchMode="startsWith">
 											<f:selectItems value="#{addItemBean.categoriesName}"
@@ -79,16 +81,20 @@
 											fileLimitMessage="#{bundle['addItem.wizard.general.file.fileLimitMessage']}"
 											requiredMessage="#{bundle['addItem.wizard.general.file.requiredMessage']}"
 											fileLimit="1" sizeLimit="20971520"
-											skinSimple="true">
-											<p:fileUpload fileUploadListener="#{addItemBean.handleUploadEvent}" auto="true" />
-										</p:fileUpload>
+											mode="advanced"
+											allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+											style="width: 30%;"
+											fileUploadListener="#{addItemBean.handleUploadEvent}"
+											auto="true" skinSimple="true" />
 									</p:panelGrid>
 								</p:panel>
 							</p:tab>
 
 							<p:tab id="descriptionTab" title="Description">
 								<p:panel header="#{bundle['addItem.wizard.header.description']}">
-									<p:messages />
+									<ui:remove>
+										<p:messages />
+									</ui:remove>
 									<h:panelGrid columns="2" columnClasses="label, value">
 										<h:outputText
 											value="#{bundle['addItem.wizard.description.label']}" />
@@ -105,14 +111,15 @@
 								<p:panel header="#{bundle['addItem.wizard.header.confirm']}">
 									<div class="row">
 										<div class="col-xs-12">
-											<div class="center-block">
-												<p:commandButton styleClass="myBigConfirmButton"
-													value="#{bundle['addItem.wizard.confirm.button.confirm']}"
-													actionListener="#{addItemBean.publish}" process="@this" />
-											</div>
+											<p:commandButton styleClass="myBigConfirmButton"
+												value="#{bundle['addItem.wizard.confirm.button.confirm']}"
+												actionListener="#{addItemBean.publish}" process="@this" 
+												oncomplete="if(args){if (args.insertSuccess) {setTimeout(function(){ $('.goToHomeBtn').click(); }, 2200);} }"
+												/>
 										</div>
 									</div>
 								</p:panel>
+								<p:commandButton styleClass="goToHomeBtn" style="display:none;" action="#{addItemBean.goToHome}" />
 							</p:tab>
 						</p:wizard>
 					</div>

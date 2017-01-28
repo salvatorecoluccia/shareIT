@@ -17,9 +17,9 @@ public class HomeBean extends BaseBean {
 	 */
 	private static final long serialVersionUID = 259735089225645905L;
 
-	private final String BUNDLE_FILE = "it.coluccia.shareit.resources.HomeResources";
-	private final String MAPPED_NAME = "homeBean";
-	private final String MAPPED_PAGE = "home";
+	private static final String BUNDLE_FILE = "it.coluccia.shareit.resources.HomeResources";
+	private static final String MAPPED_NAME = "homeBean";
+	private static final String MAPPED_PAGE = "home";
 	@EJB
 	private EjbHomeLocal serviceLocal;
 	
@@ -42,6 +42,10 @@ public class HomeBean extends BaseBean {
 	
 	@Override
 	public String getMappedPage() {
+		return MAPPED_PAGE;
+	}
+	
+	public static String getStaticMappedPage(){
 		return MAPPED_PAGE;
 	}
 

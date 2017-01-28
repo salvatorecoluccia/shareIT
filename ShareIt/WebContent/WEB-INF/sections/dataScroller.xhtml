@@ -1,10 +1,83 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<h:form>
+		<!-- ########INIZIO RICERCA AVANZATA##################### -->
+
+		<p:outputPanel id="ricercaAvanzataPanel"
+			styleClass="ricercaAvanzataPanel well">
+			<div class="row" style="margin-bottom: 1em;">
+				<div class="col-xs-12">
+					<p:outputLabel class="ricercaAvanzataTitle"
+						value="#{bundleDataSource['ricercaAvanzata.label.title']}" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-1 labelRicerca">
+					<p:outputLabel
+						value="#{bundleDataSource['ricercaAvanzata.label.titleAnnuncio']}" />
+				</div>
+				<div class="col-xs-2">
+					<p:inputText value="#{dataScrollerBean.titleFilter}" maxlength="30" a:placeholder="#{bundleDataSource['ricercaAvanzata.title.placeHolder']}"/>
+				</div>
+				<div class="col-xs-1 labelRicerca">
+					<p:outputLabel
+						value="#{bundleDataSource['ricercaAvanzata.label.categoriaAnnuncio']}" />
+				</div>
+				<div class="col-xs-2">
+					<p:selectOneMenu value="#{dataScrollerBean.categoryNameFilter}"
+						panelStyle="width:180px" effect="fade" var="category"
+						filter="true" filterMatchMode="startsWith"
+						style="min-width: 166px !important;">
+						<f:selectItem itemLabel="#{bundleDataSource['ricercaAvanzata.category.placeHolder']}" itemValue="" />
+						<f:selectItems value="#{dataScrollerBean.categories}"
+							var="category" itemLabel="#{category.name}"
+							itemValue="#{category.name}" />
+						<p:column>
+							<h:outputText value="#{category.name}" />
+						</p:column>
+					</p:selectOneMenu>
+				</div>
+				<div class="col-xs-1 labelRicerca">
+					<p:outputLabel
+						value="#{bundleDataSource['ricercaAvanzata.label.creditiAnnuncio']}" />
+				</div>
+				<div class="col-xs-4">
+					<p:slider for="minValue,maxValue" display="displayRange"
+						style="width: 400px" range="true"
+						displayTemplate="Between {min} and {max}" minValue="0"
+						maxValue="20000" />
+					<h:outputText id="displayRange"
+						value="Between #{dataScrollerBean.minCreditsFilter} and #{dataScrollerBean.maxCreditsFilter}" />
+					<h:inputHidden id="minValue"
+						value="#{dataScrollerBean.minCreditsFilter}" />
+					<h:inputHidden id="maxValue"
+						value="#{dataScrollerBean.maxCreditsFilter}" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="center-block">
+						<p:commandButton style="border-radius: 30px;margin-top: 1em;"
+							update="ItemsdataScroller"
+							value="#{bundleDataSource['datascroller.button.executeadvancedSearch']}"
+							actionListener="#{dataScrollerBean.doAdvancedSearch()}"
+							styleClass="ui-priority-primary" />
+					</div>
+				</div>
+			</div>
+		</p:outputPanel>
+
+
+		<!-- ########FINE RICERCA AVANZATA##################### -->
+
+
+
 		<p:dataScroller widgetVar="ItemsdataScroller"
+			id="ItemsdataScroller"
 			value="#{dataScrollerBean.items}" var="item" chunkSize="10"
 			scrollHeight="500" rowIndexVar="index"
 			styleClass="myDataScroller center-block">
@@ -13,12 +86,13 @@
         	</f:facet>
 
 			<div class="center-block" style="width: 100%; margin-bottom: 1em;">
-				<p:panelGrid columns="2" layout="grid" columnClasses="datascrollerImage,detail">
+				<p:panelGrid columns="2" layout="grid"
+					columnClasses="datascrollerImage,detail">
 
 
 
-					<p:graphicImage library="images" name="itemsUpload/#{item.imageUri}" />
-
+					<p:graphicImage library="images"
+						name="itemsUpload/#{item.imageUri}" />
 
 					<p:outputPanel>
 
