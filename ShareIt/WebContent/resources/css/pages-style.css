@@ -1,3 +1,5 @@
+
+
 /*########itemDetail##########*/
 .myItemDetailSection {
 	color: black !important;
@@ -27,6 +29,7 @@ descriptionRow #description {
 	height: 95%;
 	margin-bottom: 1em;
 	margin-top: 1em;
+	max-height: 600px;
 }
 
 .contactOwnerItemBtn {
@@ -47,7 +50,8 @@ descriptionRow #description {
 	margin-bottom: 10em !important;
 	width: 50%;
 }
-/*##########fine itemDetailPage*/
+
+/*##########AddItem page##############*/
 .myAddItemSection {
 	color: black !important;
 	background: rgba(235, 242, 245, 0.50);
@@ -63,8 +67,8 @@ descriptionRow #description {
 	height: 150px !important;
 	border-radius: 90px !important;
 	display: block !important;
-    margin-right: auto !important;
-    margin-left: auto !important;
+	margin-right: auto !important;
+	margin-left: auto !important;
 }
 
 .headerAddItemSection {
@@ -80,9 +84,10 @@ descriptionRow #description {
 
 .secondColumnWizard {
 	margin-bottom: 5px !important;
-	width:90%;
+	width: 90%;
 }
-.secondColumnWizard > input{
+
+.secondColumnWizard>input {
 	width: 80%;
 }
 
@@ -92,7 +97,7 @@ descriptionRow #description {
 
 .addItemWizard tr {
 	border: 1px solid transparent !important;
-    background: transparent !important;
+	background: transparent !important;
 }
 
 .ui-wizard-content .ui-panel {
@@ -104,18 +109,140 @@ descriptionRow #description {
 	margin-right: auto !important;
 }
 
-.ui-selectonemenu-trigger{
+.ui-selectonemenu-trigger {
 	width: 20px !important;
 }
-.ui-selectonemenu-label{
+
+.ui-selectonemenu-label {
 	margin: 2x !important;
 }
 
-.value{
-	width:80%;
+.value {
+	width: 80%;
 }
 
-.label{
-	color:black !important;
+.label {
+	color: black !important;
 	font-size: 1em !important;
+}
+
+/*###########Profile page#############*/
+.myDataScroller {
+	color: black !important;
+	background: rgba(235, 242, 245, 0.50);
+	width: 90% !important;
+	border-radius: 15px;
+	margin-bottom: 9em;
+}
+
+.myDataScroller .ui-widget-content {
+	background: rgba(235, 242, 245, 0.50);
+}
+
+.myDataScroller .ui-widget-header {
+	font-size: 1.5em !important;
+	color: white !important;
+}
+
+.myDataScroller table {
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 1em;
+	margin-top: 1em;
+}
+
+.labelSection {
+	font-weight: bolder !important;
+	font-size: 1em !important;
+}
+
+.titleSection {
+	font-size: 2em !important;
+	text-align: center !important;
+	background: rgba(46, 145, 233, 0.32);
+	width: 99%;
+	border-radius: 10px;
+}
+
+.informationSection div {
+	padding: 0px;
+}
+
+.myDataScroller .ui-panelgrid-content {
+	border: none;
+	border-radius: 8px;
+}
+
+.datascrollerImage img {
+	width: 95%;
+	height: 100%;
+	max-height: 400px;
+}
+
+.ricercaAvanzataPanel {
+	margin-left: 70px;
+	margin-right: 70px;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.ricercaAvanzataTitle {
+	font-size: x-large !important;
+}
+
+.userSection {
+	margin-left: 70px;
+	margin-right: 70px;
+	margin-top: 2em;
+	height: 300px;
+}
+
+.userSection div {
+	background: #333;
+	color: white;
+	border: none;
+}
+
+.marginTopFormForUserPage {
+	margin-top: 6.5em;
+}
+
+.headerProfileInfo {
+	font-size: x-large;
+	text-align: center;
+	margin-bottom: 1em;
+}
+
+.profilesectionLabel {
+	font-size: large;
+	font-weight: 800;
+}
+
+.profileSectionValue {
+	font-weight: 500;
+}
+
+.myDataScroller>div {
+	background: #333;
+}
+
+.myDataScrollDialog {
+	top: 250px !important;
+}
+
+.ui-dialog-content {
+	height: auto !important;
+}
+
+/*########Transactions page#########*/
+.transactionTitleSection {
+	text-align: center;
+	font-size: xx-large;
+	font-weight: bolder;
+	text-transform: uppercase;
+	font-family: serif;
+}
+
+.column-wrap-text {
+	white-space: normal !important;
 }

@@ -4,7 +4,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-	<h:form>
+	<h:form id="datascrollerForm" class="marginTopFormForUserPage">
+
 		<!-- ########INIZIO RICERCA AVANZATA##################### -->
 
 		<p:outputPanel id="ricercaAvanzataPanel"
@@ -21,7 +22,8 @@
 						value="#{bundleDataSource['ricercaAvanzata.label.titleAnnuncio']}" />
 				</div>
 				<div class="col-xs-2">
-					<p:inputText value="#{dataScrollerBean.titleFilter}" maxlength="30" a:placeholder="#{bundleDataSource['ricercaAvanzata.title.placeHolder']}"/>
+					<p:inputText value="#{dataScrollerBean.titleFilter}" maxlength="30"
+						a:placeholder="#{bundleDataSource['ricercaAvanzata.title.placeHolder']}" />
 				</div>
 				<div class="col-xs-1 labelRicerca">
 					<p:outputLabel
@@ -32,7 +34,9 @@
 						panelStyle="width:180px" effect="fade" var="category"
 						filter="true" filterMatchMode="startsWith"
 						style="min-width: 166px !important;">
-						<f:selectItem itemLabel="#{bundleDataSource['ricercaAvanzata.category.placeHolder']}" itemValue="" />
+						<f:selectItem
+							itemLabel="#{bundleDataSource['ricercaAvanzata.category.placeHolder']}"
+							itemValue="" />
 						<f:selectItems value="#{dataScrollerBean.categories}"
 							var="category" itemLabel="#{category.name}"
 							itemValue="#{category.name}" />
@@ -76,8 +80,7 @@
 
 
 
-		<p:dataScroller widgetVar="ItemsdataScroller"
-			id="ItemsdataScroller"
+		<p:dataScroller widgetVar="ItemsdataScroller" id="ItemsdataScroller"
 			value="#{dataScrollerBean.items}" var="item" chunkSize="10"
 			scrollHeight="500" rowIndexVar="index"
 			styleClass="myDataScroller center-block">
@@ -130,6 +133,15 @@
 							</div>
 						</ui:remove>
 
+						<div class="row informationSection">
+							<div class="col-xs-3 labelSection">
+								#{bundleDataSource['datascroller.label.address']}</div>
+							<div class="col-xs-9">
+								<h:outputText
+									value="#{dataScrollerBean.itemsAddress.get(item.id)}" />
+							</div>
+						</div>
+
 						<div class="row descriptionButton">
 							<p:commandButton
 								style="float:right;margin-right: 10px;border-radius: 10px;"
@@ -138,11 +150,52 @@
 								styleClass="ui-priority-primary" />
 						</div>
 
+						<div class="row deleteButton">
+							<p:commandButton
+								rendered="#{dataScrollerBean.currentUser != null}"
+								style="float:right;margin-right: 10px;border-radius: 10px; margin-bottom: 15px;"
+								value="#{bundleDataSource['datascroller.button.deleteItem']}"
+								onclick="PF('confirmDeleteDialog').show();"
+								actionListener="#{dataScrollerBean.setCurrentItemSelectedForDelete(item)}"
+								styleClass="ui-priority-primary" />
+						</div>
+
 					</p:outputPanel>
 
 				</p:panelGrid>
 			</div>
 		</p:dataScroller>
+	</h:form>
+
+	<h:form>
+		<p:dialog id="deleteDialog" position="center,center"
+			style="top: 250px;" styleClass="myDataScrollDialog"
+			header="#{bundleDataSource['datascroller.dialog.deleteItem.header']}"
+			resizable="false" modal="true" responsive="true"
+			widgetVar="confirmDeleteDialog" showEffect="fade"
+			hideEffect="explode" height="150" width="300" positionType="fixed">
+			<div class="center-block" style="text-align: center">
+				<h:outputText
+					value="#{bundleDataSource['datascroller.dialog.delete.message']}" />
+			</div>
+			<f:facet name="footer">
+				<div class="center-block row">
+					<p:commandButton process="@this"
+						value="#{bundleDataSource['datascroller.button.deleteItem.confirm']}"
+						onclick="PF('confirmDeleteDialog').hide();"
+						actionListener="#{dataScrollerBean.deleteItem}"
+						update="datascrollerForm:ItemsdataScroller"
+						styleClass="ui-priority-primary col-xs-5"
+						style="margin-left: 1.3em;" />
+					<p:commandButton process="@this"
+						actionListener="#{dataScrollerBean.setCurrentItemSelectedForDelete(null)}"
+						value="#{bundleDataSource['datascroller.button.deleteItem.undo']}"
+						onclick="PF('confirmDeleteDialog').hide();"
+						update="datascrollerForm:ItemsdataScroller"
+						styleClass="ui-priority-primary col-xs-5" />
+				</div>
+			</f:facet>
+		</p:dialog>
 	</h:form>
 
 </ui:composition>

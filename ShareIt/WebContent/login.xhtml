@@ -8,6 +8,27 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="headSection">
+		<script>
+		window.onLoadCallback = function() {
+				console.log("logging out from google..");
+				if(gapi == undefined || gapi.auth2 == undefined){
+					console.log("User is not sign in google");
+					return;
+				}
+				gapi.auth2.init({
+				      client_id: '525721307601-q7ahh9jk2e3ng7nd42o5tllovipo849t.apps.googleusercontent.com'
+				    }).then(function(){
+						var auth2 = gapi.auth2.getAuthInstance();
+						if(auth2 == undefined){
+							console.log("User is not sign in google");
+							return;
+						}
+					    auth2.signOut().then(function () {
+					      console.log('User signed out.');
+					    });
+				    });
+			};
+		</script>
 		<h:outputStylesheet library="css" name="login-style.css"></h:outputStylesheet>
 	</ui:define>
 
@@ -56,9 +77,8 @@
 		<footer>
 			<ui:include src="/WEB-INF/sections/footer.xhtml" />
 		</footer>
-		
+
 		<ui:include src="/WEB-INF/sections/login_dialog.xhtml" />
 		<ui:include src="/WEB-INF/sections/signIn_dialog.xhtml" />
 	</ui:define>
-
 </ui:composition>

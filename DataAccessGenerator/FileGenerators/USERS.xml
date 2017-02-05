@@ -6,7 +6,7 @@
 <generatorConfiguration>
 
 	<classPathEntry
-		location="C:\workspaces_personali\Workspace_shareIt\ShareItLibraries\jdbc\ojdbc7.jar" />
+		location="C:\workspaces_personali\local_git_repositories\ShareItRep\ShareItLibraries\jdbc\ojdbc7.jar" />
 	
 
 	<context id="OracleTables" targetRuntime="MyBatis3">
@@ -31,18 +31,18 @@
 		</javaTypeResolver>
 
 		<javaModelGenerator targetPackage="it.coluccia.shareit.dto.users"
-			targetProject="C:\workspaces_personali\Workspace_shareIt\ShareItDBModel\src">
+			targetProject="C:\workspaces_personali\local_git_repositories\ShareItRep\ShareItDBModel\src">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
 		<sqlMapGenerator targetPackage="it.coluccia.shareit.dao.users"
-			targetProject="C:\workspaces_personali\Workspace_shareIt\ShareItDataAccess\src">
+			targetProject="C:\workspaces_personali\local_git_repositories\ShareItRep\ShareItDataAccess\src">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<javaClientGenerator type="XMLMAPPER" targetPackage="it.coluccia.shareit.dao.users"
-			targetProject="C:\workspaces_personali\Workspace_shareIt\ShareItDataAccess\src">
+			targetProject="C:\workspaces_personali\local_git_repositories\ShareItRep\ShareItDataAccess\src">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		

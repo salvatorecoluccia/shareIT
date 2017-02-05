@@ -23,5 +23,19 @@
 	<classpathentry kind="lib" path="/ShareItLibraries/jsf/myfaces-impl-2.2.11.jar"/>
 	<classpathentry kind="lib" path="/ShareItLibraries/jsf-ui/excite-bike-1.0.10.jar"/>
 	<classpathentry kind="lib" path="/ShareItLibraries/jsf-ui/primefaces-6.0.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/gson-2.1.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/guava-jdk5-17.0.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/httpclient-4.0.1.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/httpcore-4.0.1.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/jackson-core-2.1.3.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/jackson-core-asl-1.9.11.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/jdo2-api-2.3-eb.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/jetty-6.1.26.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/jetty-util-6.1.26.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/jsr305-1.3.9.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/protobuf-java-2.6.1.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/transaction-api-1.1.jar"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/xpp3-1.1.4c.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

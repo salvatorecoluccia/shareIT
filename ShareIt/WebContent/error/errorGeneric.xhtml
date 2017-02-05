@@ -1,23 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="../WEB-INF/template/templateError.xhtml"
+	template="../WEB-INF/template/template.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui">
-	
-	
-	<ui:define name="title_error">
-		#{bundleCommon['title.error.generic']}
-	</ui:define>
-	
-	<ui:define name="description_error">
-		#{bundleCommon['description.error.generic']}
-	</ui:define>
-	
-	<ui:define name="button_error">
-		<p:button outcome="home" value="#{bundleCommon['button.goto.home']}" styleClass="button_isp42 button_green my-button"/>
+
+	<ui:define name="headSection">
+		<h:outputStylesheet library="css" name="pages-style.css"></h:outputStylesheet>
 	</ui:define>
 
-	
-	
+
+	<ui:define name="title">
+		#{bundle['title.maps.page']}
+</ui:define>
+
+	<ui:define name="sectionBody">
+		<header>
+			<ui:include src="../WEB-INF/sections/header.xhtml" />
+		</header>
+		<section>
+
+			<div class="customDock">
+				<p:dock position="top">
+					<p:menuitem value="#{bundleCommon['menu.dock.label.home']}"
+						icon="/resources/images/dock/home_dock.ico" url="/home/home.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.addItem']}"
+						icon="/resources/images/dock/addItem_icon.png"
+						url="/pages/addItem.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.mapsItem']}"
+						icon="/resources/images/dock/location.png"
+						url="/pages/mapItems.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.yourProfile']}"
+						icon="/resources/images/dock/profile_icon.png"
+						url="/pages/profile.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.transactions']}"
+						icon="/resources/images/dock/transaction_icon.png"
+						url="/pages/transactions.xhtml" />
+				</p:dock>
+
+			</div>
+			<h:form>
+				<div class="container"
+					style="text-align: center; vertical-align: middle; font-size: 3em;">
+					<div style="font-size: 7em;">
+						<h:outputText value="#{bundleCommon['error.page.title']}"></h:outputText>
+					</div>
+					<br />
+					<div>
+						<h:outputText
+							value="#{bundleCommon['error.page.generic.description']}"></h:outputText>
+					</div>
+				</div>
+
+			</h:form>
+		</section>
+
+		<footer>
+			<ui:include src="../WEB-INF/sections/footer.xhtml" />
+		</footer>
+
+	</ui:define>
+
 </ui:composition>
-			
-			
-				

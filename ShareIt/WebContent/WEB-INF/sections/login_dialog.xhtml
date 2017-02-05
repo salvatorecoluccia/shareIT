@@ -3,28 +3,42 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<p:dialog header="" resizable="false" modal="true"
-		responsive="true" widgetVar="loginDialog" showEffect="fade"
-		hideEffect="fade" height="150" width="300">
-		<h:form id="login-dialog-form">
-			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel for="username" value="Username:" />
-				<p:inputText id="username" value="#{loginBean.username}"
-					required="true" label="username" />
+	<div class="myLoginDialog">
+		<p:dialog header="" resizable="false" modal="true" responsive="true"
+			widgetVar="loginDialog" showEffect="fade" hideEffect="fade"
+			height="150" width="320" style="border-radius: 20px;">
+			<h:form id="login-dialog-form">
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel style="margin-right: 1em;" for="username"
+						value="Username:" />
+					<p:inputText id="username" value="#{loginBean.username}"
+						required="true" label="username" />
 
-				<h:outputLabel for="password" value="Password:" />
-				<p:password id="password" value="#{loginBean.password}"
-					required="true" label="password" />
+					<h:outputLabel style="margin-right: 1em;margin-top: 1em;"
+						for="password" value="Password:" />
+					<p:password style="margin-top: 1em;" id="password"
+						value="#{loginBean.password}" required="true" label="password" />
 
-				<f:facet name="footer">
-					<p:commandButton value="#{bundle['button.login']}" update="growl"
-						actionListener="#{loginBean.validateUserPassword}"
-						oncomplete="handleLoginRequest(xhr, status, args,'loginDialog')" />
-						<h:commandButton id="hiddenGotoHomeBtn" style="display:none;" action="home"/>
-				</f:facet>
-			</h:panelGrid>
-		</h:form>
-	</p:dialog>
+					<f:facet name="footer">
+						<p:commandButton value="#{bundle['button.login']}" update="growl"
+							id="signInButton"
+							style="margin-left: auto;margin-right: auto;width: 50%;display: block;margin-top: 1em;"
+							oncomplete="handleLoginRequest(xhr, status, args,'loginDialog')"
+							actionListener="#{loginBean.validateUserPassword}" />
+						<h:commandButton id="hiddenGotoHomeBtn" style="display:none;"
+							action="home" />
+						<p:inputText id="hiddenTokenInput" style="display:None;"
+							value="#{loginBean.idToken}" />
+							
+						<div style="margin-top: 0.5em; margin-left: 38px;"
+							class="g-signin2" data-onsuccess="onSignIn" data-longtitle="true"
+							data-width="200"></div>
+
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</div>
 
 
 </ui:composition>

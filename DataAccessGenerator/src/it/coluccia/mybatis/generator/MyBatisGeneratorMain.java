@@ -20,7 +20,7 @@ public class MyBatisGeneratorMain {
 
 	private static final String[] conf_all = {
 		 
-		"C:/workspaces_personali/Workspace_shareIt/DataAccessGenerator/FileGenerators/USERS.xml"};
+		"C:/workspaces_personali/local_git_repositories/ShareItRep/DataAccessGenerator/FileGenerators/ITEMS.xml"};
 	
 	
 	

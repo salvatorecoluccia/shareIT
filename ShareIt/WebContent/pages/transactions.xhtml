@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="../WEB-INF/template/template.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="headSection">
+		<h:outputStylesheet library="css" name="pages-style.css"></h:outputStylesheet>
+	</ui:define>
+
+	<ui:define name="bundle">
+		<f:loadBundle basename="#{transactionsBean.bundleName}" var="bundle" />
+	</ui:define>
+
+	<ui:define name="title">
+		#{bundle['title.maps.page']}
+</ui:define>
+
+	<ui:define name="sectionBody">
+		<header>
+			<ui:include src="../WEB-INF/sections/header.xhtml" />
+		</header>
+		<section>
+
+			<div class="customDock">
+				<p:dock position="top">
+					<p:menuitem value="#{bundleCommon['menu.dock.label.home']}"
+						icon="/resources/images/dock/home_dock.ico" url="/home/home.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.addItem']}"
+						icon="/resources/images/dock/addItem_icon.png"
+						url="/pages/addItem.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.mapsItem']}"
+						icon="/resources/images/dock/location.png"
+						url="/pages/mapItems.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.yourProfile']}"
+						icon="/resources/images/dock/profile_icon.png"
+						url="/pages/profile.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.transactions']}"
+						icon="/resources/images/dock/transaction_icon.png"
+						url="/pages/transactions.xhtml" />
+				</p:dock>
+			</div>
+			<h:form>
+				<div class="container">
+
+					<div class="row" style="margin-top: 2em;">
+						<div class="col-xs-12 transactionTitleSection">
+							<h:outputText value="#{bundle['transaction.title.your']}" />
+						</div>
+					</div>
+					<p:dataTable var="item" value="#{transactionsBean.transactions}"
+						style="width:102%;margin-top: 1em;" rows="10" paginator="true"
+						paginatorPosition="bottom" resizableColumns="true"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15" rowIndexVar="rowIndex">
+
+						<p:column headerText="">
+							<p:graphicImage library="images"
+								style="width:150px;height:150px;"
+								name="itemsUpload/#{item.imageUri}" />
+						</p:column>
+
+						<p:column filterBy="#{item.idItem}" filterMatchMode="contains"
+							headerText="#{bundle['transaction.item.id']}">
+							<h:outputText value="#{item.idItem}" />
+						</p:column>
+						<p:column filterBy="#{item.itemName}"
+							styleClass="column-wrap-text" filterMatchMode="contains"
+							headerText="#{bundle['transaction.item.name']}">
+							<h:outputText value="#{item.itemName}" />
+						</p:column>
+						<p:column headerText="#{bundle['transaction.item.price']}">
+							<h:outputText value="#{item.priceCredit}" />
+						</p:column>
+						<p:column filterBy="#{item.idBuyer}" filterMatchMode="contains"
+							headerText="#{bundle['transaction.item.buyerId']}">
+							<h:outputText value="#{item.idBuyer}" />
+						</p:column>
+						<p:column filterBy="#{item.message}" styleClass="column-wrap-text"
+							filterMatchMode="contains"
+							headerText="#{bundle['transaction.item.message']}">
+							<h:outputText value="#{item.message}" />
+						</p:column>
+						<p:column headerText="#{bundle['transaction.item.sellDate']}">
+							<h:outputText value="#{item.sellDate}">
+								<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align: center">
+							<p:commandButton
+								action="#{transactionsBean.goToDetailsPage(item.idItem)}"
+								icon="ui-icon-search" title="View" />
+						</p:column>
+
+					</p:dataTable>
+
+
+					<div class="row" style="margin-top: 2em;">
+						<div class="col-xs-12 transactionTitleSection">
+							<h:outputText value="#{bundle['transaction.title.others']}" />
+						</div>
+					</div>
+					<p:dataTable var="item"
+						value="#{transactionsBean.transactionsUserBuyer}"
+						style="width:102%;margin-top: 1em;margin-bottom:6.5em;" rows="10"
+						paginator="true" paginatorPosition="bottom"
+						resizableColumns="true"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15">
+
+						<p:column headerText="">
+							<p:graphicImage library="images"
+								style="width:150px;height:150px;"
+								name="itemsUpload/#{item.imageUri}" />
+						</p:column>
+
+						<p:column filterBy="#{item.idItem}" filterMatchMode="contains"
+							headerText="#{bundle['transaction.item.id']}">
+							<h:outputText value="#{item.idItem}" />
+						</p:column>
+						<p:column filterBy="#{item.itemName}"
+							styleClass="column-wrap-text" filterMatchMode="contains"
+							headerText="#{bundle['transaction.item.name']}">
+							<h:outputText value="#{item.itemName}" />
+						</p:column>
+						<p:column headerText="#{bundle['transaction.item.price']}">
+							<h:outputText value="#{item.priceCredit}" />
+						</p:column>
+						<p:column filterBy="#{item.idBuyer}" filterMatchMode="contains"
+							headerText="#{bundle['transaction.item.buyerId']}">
+							<h:outputText value="#{item.idBuyer}" />
+						</p:column>
+						<p:column filterBy="#{item.message}" styleClass="column-wrap-text"
+							filterMatchMode="contains"
+							headerText="#{bundle['transaction.item.message']}">
+							<h:outputText value="#{item.message}" />
+						</p:column>
+						<p:column headerText="#{bundle['transaction.item.sellDate']}">
+							<h:outputText value="#{item.sellDate}">
+								<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+							</h:outputText>
+						</p:column>
+
+						<p:column style="text-align: center">
+							<p:commandButton
+								action="#{transactionsBean.goToDetailsPage(item.idItem)}"
+								icon="ui-icon-search" title="View" />
+						</p:column>
+
+					</p:dataTable>
+				</div>
+
+
+			</h:form>
+		</section>
+
+		<footer>
+			<ui:include src="../WEB-INF/sections/footer.xhtml" />
+		</footer>
+
+	</ui:define>
+
+</ui:composition>

@@ -57,3 +57,24 @@ a:hover {
 .ui-dock-top{
 	z-index: 9997 !important;
 }
+
+.ui-dock-top img{
+	border: 0 !important;
+    margin: 0px !important;
+    width: 100% !important;
+}
+
+.ui-dock-top span{
+	padding-left: 0px !important;
+    background: aqua !important;
+    width: 100% !important;
+    border-radius: 30px !important;
+}
+
+.myLoginDialog > div{
+	height: 225px !important;
+}
+
+.myLoginDialog div .ui-dialog-content {
+	height: inherit !important;
+}

@@ -30,7 +30,20 @@
 				<p:dock position="top">
 					<p:menuitem value="#{bundleCommon['menu.dock.label.home']}"
 						icon="/resources/images/dock/home_dock.ico" url="/home/home.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.addItem']}"
+						icon="/resources/images/dock/addItem_icon.png"
+						url="/pages/addItem.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.mapsItem']}"
+						icon="/resources/images/dock/location.png"
+						url="/pages/mapItems.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.yourProfile']}"
+						icon="/resources/images/dock/profile_icon.png"
+						url="/pages/profile.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.transactions']}"
+						icon="/resources/images/dock/transaction_icon.png"
+						url="/pages/transactions.xhtml" />
 				</p:dock>
+
 			</div>
 			<h:form enctype="multipart/form-data">
 				<div class="container myAddItemSection">
@@ -39,7 +52,8 @@
 							value="#{bundle['addItem.sections.title']}" />
 					</div>
 					<div class="row addItemWizard">
-						<p:wizard flowListener="#{addItemBean.onFlowProcess}">
+						<p:wizard id="addItemWizard"
+							flowListener="#{addItemBean.onFlowProcess}">
 							<p:tab id="general" title="General">
 								<p:panel header="#{bundle['addItem.wizard.header.general']}">
 									<ui:remove>
@@ -80,10 +94,8 @@
 											invalidSizeMessage="#{bundle['addItem.wizard.general.file.invalidSizeMessage']}"
 											fileLimitMessage="#{bundle['addItem.wizard.general.file.fileLimitMessage']}"
 											requiredMessage="#{bundle['addItem.wizard.general.file.requiredMessage']}"
-											fileLimit="1" sizeLimit="20971520"
-											mode="advanced"
-											allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-											style="width: 30%;"
+											fileLimit="1" sizeLimit="20971520" mode="advanced"
+											allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="width: 30%;"
 											fileUploadListener="#{addItemBean.handleUploadEvent}"
 											auto="true" skinSimple="true" />
 									</p:panelGrid>
@@ -102,7 +114,30 @@
 											rows="10" counter="displayCharNum" maxlength="450"
 											counterTemplate="{0} characters remaining." style="width:90%"
 											a:placeholder="#{bundle['addItem.wizard.description.textarea.placeholder']}" />
+										<h:outputText id="fakeOutForLayout" />
 										<h:outputText id="displayCharNum" />
+									</h:panelGrid>
+								</p:panel>
+							</p:tab>
+
+							<p:tab id="locationTab" title="Location">
+								<p:panel id="locationPanel"
+									header="#{bundle['addItem.wizard.header.location']}">
+									<ui:remove>
+										<p:messages />
+									</ui:remove>
+									<h:panelGrid columns="2" columnClasses="label, value">
+										<h:outputText style="margin: 2em;display:block;"
+											value="#{bundle['addItem.wizard.location.label']}" />
+										<p:inputText value="#{addItemBean.selectedLocation}"
+											requiredMessage="#{bundle['addItem.wizard.location.address.requiredMessage']}"
+											required="true"
+											style="width: 100%;margin: 2em;text-align: center;"
+											label="#{bundle['addItem.wizard.location.address']}">
+											<p:ajax event="change"
+												listener="#{addItemBean.geocodeAddress}"
+												update="addItemWizard" />
+										</p:inputText>
 									</h:panelGrid>
 								</p:panel>
 							</p:tab>
@@ -113,13 +148,13 @@
 										<div class="col-xs-12">
 											<p:commandButton styleClass="myBigConfirmButton"
 												value="#{bundle['addItem.wizard.confirm.button.confirm']}"
-												actionListener="#{addItemBean.publish}" process="@this" 
-												oncomplete="if(args){if (args.insertSuccess) {setTimeout(function(){ $('.goToHomeBtn').click(); }, 2200);} }"
-												/>
+												actionListener="#{addItemBean.publish}" process="@this"
+												oncomplete="if(args){if (args.insertSuccess) {setTimeout(function(){ $('.goToHomeBtn').click(); }, 2200);} }" />
 										</div>
 									</div>
 								</p:panel>
-								<p:commandButton styleClass="goToHomeBtn" style="display:none;" action="#{addItemBean.goToHome}" />
+								<p:commandButton styleClass="goToHomeBtn" style="display:none;"
+									action="#{addItemBean.goToHome}" />
 							</p:tab>
 						</p:wizard>
 					</div>

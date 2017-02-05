@@ -2,6 +2,7 @@ package it.coluccia.fe.backingbean.pages;
 
 import java.io.File;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.model.UploadedFile;
 
+import com.google.maps.model.GeocodingResult;
+
 import it.coluccia.common.constants.CommonConstants;
 import it.coluccia.common.exception.ServiceException;
 import it.coluccia.fe.backingbean.base.BaseBean;
@@ -35,6 +38,8 @@ import it.common.fe.utils.FacesMessageUtils;
 @ManagedBean(name = "addItemBean")
 public class AddItemBean extends BaseBean {
 
+	private final String CONFIRM_PHASE_ID = "confirmTab";
+
 	private final String KEY_TITLE_SERVICE_ERROR = "msg.title.error.service";
 	private final String KEY_BODY_RETRIEVE_CATEGORIES_ERROR = "msg.body.error.retrieve.categories";
 	private final String KEY_BODY_PUBLISH_ERROR = "msg.body.error.publish";
@@ -44,12 +49,15 @@ public class AddItemBean extends BaseBean {
 	private final String KEY_TITLE_SERVICE_WARNING = "msg.title.warning.incomplete";
 	private final String KEY_TITLE_SERVICE_SUCCESS = "msg.title.service.success";
 	private final String KEY_BODY_PUBLISH_SUCCESS = "msg.body.publish.success";
+	private final String KEY_BODY_GEOCODING_SERVICE_ERROR = "msg.body.geocoding.error";
+	private final String KEY_BODY_GEOCODING_COMPILE_ERROR = "msg.body.geocoding.compile.error";
 
 	private Items newItem;
 	private String categoryNameSelected;
 	private List<Categories> categories;
 	private List<String> categoriesName;
 	private UploadedFile imageFile;
+	private String selectedLocation;
 
 	@EJB
 	private ShareItEjbLocal serviceLocal;
@@ -112,6 +120,30 @@ public class AddItemBean extends BaseBean {
 		}
 	}
 
+	public void geocodeAddress() {
+		logger.debug("geocodeAddress start");
+		try {
+			GeocodingResult[] result = serviceLocal.geocodeAddress(selectedLocation);
+			if (result != null && result.length > 0 && result[0] != null) {
+				selectedLocation = result[0].formattedAddress;
+				newItem.setLatitude(new BigDecimal(result[0].geometry.location.lat));
+				newItem.setLongitude(new BigDecimal(result[0].geometry.location.lng));
+			} else {
+				newItem.setLatitude(null);
+				newItem.setLongitude(null);
+				logger.error("Nessun risultato dal servizio di geolocalizzazione google");
+				FacesMessageUtils.addMessageWarningFromBundle(KEY_TITLE_SERVICE_WARNING,
+						KEY_BODY_GEOCODING_COMPILE_ERROR, getResourceBundle());
+			}
+		} catch (ServiceException e) {
+			logger.error("Errore durante geocodeAddress");
+			FacesMessageUtils.addMessageErrorFromBundle(KEY_TITLE_SERVICE_ERROR, KEY_BODY_GEOCODING_SERVICE_ERROR,
+					getResourceBundle());
+		} finally {
+			logger.debug("geocodeAddress end");
+		}
+	}
+
 	public void publish() {
 		logger.debug("publish start");
 
@@ -121,8 +153,7 @@ public class AddItemBean extends BaseBean {
 		if (checkIfFieldAreConsistent()) {
 			try {
 				serviceLocal.publishItem(newItem, loginBean.getUsername(), loginBean.getPassword());
-				RequestContext.getCurrentInstance().addCallbackParam(
-						"insertSuccess", true); 
+				RequestContext.getCurrentInstance().addCallbackParam("insertSuccess", true);
 				FacesMessageUtils.addMessageInfoFromBundle(KEY_TITLE_SERVICE_SUCCESS, KEY_BODY_PUBLISH_SUCCESS,
 						getResourceBundle());
 			} catch (ServiceException e) {
@@ -138,8 +169,8 @@ public class AddItemBean extends BaseBean {
 					getResourceBundle());
 		}
 	}
-	
-	public String goToHome(){
+
+	public String goToHome() {
 		logger.debug("..redirecting to Home page");
 		return HomeBean.getStaticMappedPage();
 	}
@@ -150,7 +181,8 @@ public class AddItemBean extends BaseBean {
 		}
 		if (this.newItem.getCategoryCode() == null || StringUtils.isEmpty(newItem.getDescription())
 				|| StringUtils.isEmpty(newItem.getName()) || newItem.getPriceCredit() == null
-				|| StringUtils.isEmpty(newItem.getImageUri())) {
+				|| StringUtils.isEmpty(newItem.getImageUri()) || newItem.getLatitude() == null
+				|| newItem.getLongitude() == null) {
 			return false;
 		}
 		return true;
@@ -174,12 +206,14 @@ public class AddItemBean extends BaseBean {
 	}
 
 	public String onFlowProcess(FlowEvent event) {
-		logger.debug("onFlowProcess start, eventPhase: " + event.getPhaseId());
-/*		if (this.newItem.getCategoryCode() == null || StringUtils.isEmpty(newItem.getName())
-				|| newItem.getPriceCredit() == null || StringUtils.isEmpty(newItem.getImageUri())) {
-			FacesMessageUtils.addMessageWarningFromBundle(KEY_TITLE_SERVICE_WARNING, KEY_BODY_COMPILE_WARNING,
-					getResourceBundle());
-		}*/
+		logger.debug("onFlowProcess start, eventPhase: " + event.getNewStep());
+		if (event.getNewStep().equals(CONFIRM_PHASE_ID)) {
+			if (this.newItem == null || this.newItem.getLatitude() == null || this.newItem.getLongitude() == null) {
+				FacesMessageUtils.addMessageWarningFromBundle(KEY_TITLE_SERVICE_WARNING,
+						KEY_BODY_GEOCODING_COMPILE_ERROR, getResourceBundle());
+				return event.getOldStep();
+			}
+		}
 		return event.getNewStep();
 	}
 
@@ -234,6 +268,14 @@ public class AddItemBean extends BaseBean {
 
 	public void setImageFile(UploadedFile imageFile) {
 		this.imageFile = imageFile;
+	}
+
+	public String getSelectedLocation() {
+		return selectedLocation;
+	}
+
+	public void setSelectedLocation(String selectedLocation) {
+		this.selectedLocation = selectedLocation;
 	}
 
 }

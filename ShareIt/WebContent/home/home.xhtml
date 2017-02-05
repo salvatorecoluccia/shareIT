@@ -32,7 +32,17 @@
 					<p:menuitem value="#{bundleCommon['menu.dock.label.home']}"
 						icon="/resources/images/dock/home_dock.ico" url="/home/home.xhtml" />
 					<p:menuitem value="#{bundleCommon['menu.dock.label.addItem']}"
-						icon="/resources/images/dock/home_dock.ico" url="/pages/addItem.xhtml" />
+						icon="/resources/images/dock/addItem_icon.png"
+						url="/pages/addItem.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.mapsItem']}"
+						icon="/resources/images/dock/location.png"
+						url="/pages/mapItems.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.yourProfile']}"
+						icon="/resources/images/dock/profile_icon.png"
+						url="/pages/profile.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.transactions']}"
+						icon="/resources/images/dock/transaction_icon.png"
+						url="/pages/transactions.xhtml" />
 				</p:dock>
 
 				<ui:include src="../WEB-INF/sections/dataScroller.xhtml" />

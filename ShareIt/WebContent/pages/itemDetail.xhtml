@@ -30,8 +30,19 @@
 				<p:dock position="top">
 					<p:menuitem value="#{bundleCommon['menu.dock.label.home']}"
 						icon="/resources/images/dock/home_dock.ico" url="/home/home.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.addItem']}"
+						icon="/resources/images/dock/addItem_icon.png"
+						url="/pages/addItem.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.mapsItem']}"
+						icon="/resources/images/dock/location.png"
+						url="/pages/mapItems.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.yourProfile']}"
+						icon="/resources/images/dock/profile_icon.png"
+						url="/pages/profile.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.transactions']}"
+						icon="/resources/images/dock/transaction_icon.png"
+						url="/pages/transactions.xhtml" />
 				</p:dock>
-
 
 			</div>
 			<h:form>
@@ -39,7 +50,8 @@
 					<div class="row">
 						<div class="col-xs-4 imageDetail">
 							<p:graphicImage alt="item-image" styleClass="img-item-detail"
-								library="images" name="itemsUpload/#{itemDetailBean.item.imageUri}" />
+								library="images"
+								name="itemsUpload/#{itemDetailBean.item.imageUri}" />
 						</div>
 
 						<h:panelGroup id="detailItemInfoSectionWrapper">

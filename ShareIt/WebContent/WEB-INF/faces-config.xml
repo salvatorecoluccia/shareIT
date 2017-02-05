@@ -20,8 +20,7 @@
 
 	<factory>
 		<exception-handler-factory>
-			org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory
-		</exception-handler-factory>
+			org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory</exception-handler-factory>
 	</factory>
 
 
@@ -43,11 +42,12 @@
 		</navigation-case>
 	</navigation-rule>
 
+
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
-			<from-outcome>profile</from-outcome>
-			<to-view-id>/profile/profile.xhtml</to-view-id>
+			<from-outcome>transactions</from-outcome>
+			<to-view-id>/pages/transactions.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -66,6 +66,24 @@
 		<navigation-case>
 			<from-outcome>addItem</from-outcome>
 			<to-view-id>/pages/addItem.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>profile</from-outcome>
+			<to-view-id>/pages/profile.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>itemsMap</from-outcome>
+			<to-view-id>/pages/mapItems.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

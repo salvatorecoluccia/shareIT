@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="../WEB-INF/template/template.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="headSection">
+		<h:outputStylesheet library="css" name="pages-style.css"></h:outputStylesheet>
+	</ui:define>
+
+	<ui:define name="bundle">
+		<f:loadBundle basename="#{profileBean.bundleName}" var="bundle" />
+		<f:loadBundle basename="#{dataScrollerBean.bundleName}"
+			var="bundleDataSource" />
+	</ui:define>
+
+	<ui:define name="title">
+		#{bundle['title.profile.page']}
+</ui:define>
+
+	<ui:define name="sectionBody">
+		<header>
+			<ui:include src="../WEB-INF/sections/header.xhtml" />
+		</header>
+		<section>
+
+			<div class="customDock">
+				<p:dock position="top">
+					<p:menuitem value="#{bundleCommon['menu.dock.label.home']}"
+						icon="/resources/images/dock/home_dock.ico" url="/home/home.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.addItem']}"
+						icon="/resources/images/dock/addItem_icon.png"
+						url="/pages/addItem.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.mapsItem']}"
+						icon="/resources/images/dock/location.png"
+						url="/pages/mapItems.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.yourProfile']}"
+						icon="/resources/images/dock/profile_icon.png"
+						url="/pages/profile.xhtml" />
+					<p:menuitem value="#{bundleCommon['menu.dock.label.transactions']}"
+						icon="/resources/images/dock/transaction_icon.png"
+						url="/pages/transactions.xhtml" />
+				</p:dock>
+
+			</div>
+
+			<p:panelGrid styleClass="userSection" columns="2" layout="grid"
+				columnClasses="userImage,userDetails">
+				<p:panel>
+					<p:panel rendered="#{profileBean.user.picture != null}">
+						<img src="#{profileBean.user.picture}" alt="Profile image"
+							class="img-item-detail" />
+					</p:panel>
+					<p:panel rendered="#{profileBean.user.picture == null}">
+						<p:graphicImage alt="profile-image" styleClass="img-item-detail"
+							library="images" name="avatar-default.png" />
+
+					</p:panel>
+				</p:panel>
+				<p:panel>
+					<div class="row">
+						<div class="col-xs-12 headerProfileInfo">
+							<p:outputLabel
+								value="#{bundle['profile.section.informartion.header']}" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-3 profilesectionLabel">
+							<p:outputLabel
+								value="#{bundle['profile.section.informartion.name']}" />
+						</div>
+						<div class="col-xs-8">
+							<p:outputLabel styleClass="profileSectionValue"
+								value="#{profileBean.user.firstname}" />
+							<p:outputLabel styleClass="profileSectionValue"
+								value="#{profileBean.user.lastname}" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-3 profilesectionLabel">
+							<p:outputLabel
+								value="#{bundle['profile.section.informartion.username']}" />
+						</div>
+						<div class="col-xs-8">
+							<p:outputLabel styleClass="profileSectionValue"
+								value="#{profileBean.user.username}" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-3 profilesectionLabel">
+							<p:outputLabel
+								value="#{bundle['profile.section.informartion.credits']}" />
+						</div>
+						<div class="col-xs-8">
+							<p:outputLabel styleClass="profileSectionValue"
+								value="#{profileBean.user.credit}" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-3 profilesectionLabel">
+							<p:outputLabel
+								value="#{bundle['profile.section.informartion.email']}" />
+						</div>
+						<div class="col-xs-8">
+							<p:outputLabel styleClass="profileSectionValue"
+								value="#{profileBean.user.email}" />
+						</div>
+					</div>
+				</p:panel>
+			</p:panelGrid>
+
+			<ui:include src="../WEB-INF/sections/dataScroller.xhtml" />
+
+
+
+		</section>
+		<footer>
+			<ui:include src="../WEB-INF/sections/footer.xhtml" />
+		</footer>
+
+	</ui:define>
+
+</ui:composition>

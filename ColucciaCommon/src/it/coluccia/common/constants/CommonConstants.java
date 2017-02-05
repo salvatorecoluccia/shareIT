@@ -14,4 +14,5 @@ public class CommonConstants {
 	
 	public final static String UPLOAD_IMAGE_PATH = "C:/workspaces_personali/local_git_repositories/ShareItRep/ShareIt/WebContent/resources/images/itemsUpload/";
 	
+	public final static String GOOGLE_API_KEY = "AIzaSyAN5XiV8NAFbvb5Pq9VafG3ydsD-Ulz9t0";
 }

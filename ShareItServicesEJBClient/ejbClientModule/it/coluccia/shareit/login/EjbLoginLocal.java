@@ -9,5 +9,5 @@ import it.coluccia.common.exception.ServiceException;
 public interface EjbLoginLocal {
 	public boolean validateUsernamePassword(String username, String password) throws ServiceException;
 	public void signIn(String username,String password,String firstName,String lastName,String email) throws ServiceException;
-
+	public boolean validateUser(String tokenId) throws ServiceException;
 }

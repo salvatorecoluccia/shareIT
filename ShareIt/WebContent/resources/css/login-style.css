@@ -17,3 +17,11 @@
 	height: 5em;
 	text-transform: uppercase;
 }
+
+.myLoginDialog>div {
+	height: 225px !important;
+}
+
+.myLoginDialog div .ui-dialog-content {
+	height: inherit !important;
+}

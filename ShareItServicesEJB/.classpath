@@ -17,5 +17,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/ShareItDataAccess"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ShareItDataModel"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ShareItDBModel"/>
+	<classpathentry kind="lib" path="/ShareItLibraries/Google/jackson-all-1.9.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -73,5 +73,26 @@
         <dependent-module archiveName="ColucciaCommon.jar" deploy-path="/lib" handle="module:/resource/ColucciaCommon/ColucciaCommon">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="animal-sniffer-annotations-1.10.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/Google/GoogleWSDependendciesNEW/animal-sniffer-annotations-1.10.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="joda-time-2.4.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/Google/GoogleWSDependendciesNEW/joda-time-2.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="okio-1.6.0.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/Google/GoogleWSDependendciesNEW/okio-1.6.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="gson-2.3.1.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/Google/GoogleWSDependendciesNEW/gson-2.3.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="okhttp-2.7.5.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/Google/GoogleWSDependendciesNEW/okhttp-2.7.5.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="google-maps-services-0.1.17.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/Google/GoogleWSDependendciesNEW/google-maps-services-0.1.17.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="joda-convert-1.2.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/Google/GoogleWSDependendciesNEW/joda-convert-1.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>

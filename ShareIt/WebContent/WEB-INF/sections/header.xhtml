@@ -4,10 +4,18 @@
 	<nav class="navbar navbar-default navbar-fixed-top customheader">
 		<div class="container-fluid">
 			<div class="navbar-header custom-nav-header">
-				<p:link styleclass="navbar-brand" outcome="login"
+				<p:link styleclass="navbar-brand" outcome="home"
 					value="#{bundleCommon['button.shareit']}" />
 			</div>
 			<p class="navbar-text custom-navbar-text">#{bundleCommon['label.description.shareit']}</p>
+			<div class="pull-right">
+				<p:commandButton styleClass="trueLogoutBtn" style="display:None;" action="#{loginBean.logout()}"/>
+				<p:commandButton
+					style="margin-top: 10px;color: black;text-transform: uppercase;font-weight: bolder;"
+					rendered="#{loginBean.username != null}" onclick="doGoogleLogout()"
+					value="logout" icon="ui-icon-power"
+					title="View" />
+			</div>
 		</div>
 		<!-- /.container-fluid -->
 	</nav>

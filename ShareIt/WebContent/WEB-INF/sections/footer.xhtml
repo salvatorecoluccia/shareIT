@@ -2,19 +2,32 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-	<footer style="max-height: 100px;" class="footer-distributed navbar navbar-fixed-bottom">
+	<footer style="max-height: 100px;"
+		class="footer-distributed navbar navbar-fixed-bottom">
 
-		<div class="footer-right">	
-			<h:graphicImage styleClass="img-logo-footer" library="images" name="logo.png" />
+		<div class="footer-right">
+			<h:graphicImage styleClass="img-logo-footer" library="images"
+				name="logo.png" />
 		</div>
 
 		<div class="footer-left">
 			<p class="footer-links">
-				<p:link styleclass="navbar-brand" outcome="home"
-					value="#{bundleCommon['footer.link.home']}" />
+				<h:panelGroup rendered="#{loginBean.username != null}">
+					<p:link styleclass="navbar-brand" outcome="home"
+						value="#{bundleCommon['footer.link.home']}" />
 				.
 				<p:link styleclass="navbar-brand" outcome="profile"
-					value="#{bundleCommon['footer.link.profile']}" />
+						value="#{bundleCommon['footer.link.profile']}" />
+				.
+				<p:link styleclass="navbar-brand" outcome="transactions"
+					value="#{bundleCommon['footer.link.transactions']}" />
+				.
+				<p:link styleclass="navbar-brand" outcome="addItem"
+					value="#{bundleCommon['footer.link.addItem']}" />
+				.
+				<p:link styleclass="navbar-brand" outcome="itemsMap"
+					value="#{bundleCommon['footer.link.map']}" />
+				</h:panelGroup>
 			</p>
 
 			<p>#{bundleCommon['footer.label.company']}</p>
