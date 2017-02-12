@@ -25,6 +25,14 @@
 	font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+
+@font-face {
+    font-family: 'ShareItFont';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Pacifico'), url('http://themes.googleusercontent.com/font?kit=fKnfV28XkldRW297cFLeqfesZW2xOQ-xsNqO47m55DA') format('truetype');
+}
+
 body {
 	padding-top: 70px;
 	background: url("#{resource['images:background_big.jpg']}");

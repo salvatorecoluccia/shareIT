@@ -94,13 +94,13 @@
 
 
 
-					<p:graphicImage library="images"
+					<p:graphicImage style="border-radius: 30px;" library="images"
 						name="itemsUpload/#{item.imageUri}" />
 
 					<p:outputPanel>
 
 						<div class="row titleSection">
-							<div class="col-xs-12">#{item.name}</div>
+							<div style="word-wrap: break-word;" class="col-xs-12">#{item.name}</div>
 						</div>
 						<br></br>
 						<div class="row informationSection">
@@ -144,7 +144,7 @@
 
 						<div class="row descriptionButton">
 							<p:commandButton
-								style="float:right;margin-right: 10px;border-radius: 10px;"
+								style="float: right;margin-right: 10px;border-radius: 10px;margin-top: 3em;width: 200px;height: 40px;font-size: 1.3em;"
 								value="#{bundleDataSource['datascroller.button.goToDetails']}"
 								action="#{dataScrollerBean.goToDetailsPage(item.id)}"
 								styleClass="ui-priority-primary" />
@@ -153,7 +153,7 @@
 						<div class="row deleteButton">
 							<p:commandButton
 								rendered="#{dataScrollerBean.currentUser != null}"
-								style="float:right;margin-right: 10px;border-radius: 10px; margin-bottom: 15px;"
+								style="float: right;margin-right: 10px;border-radius: 10px;margin-top: 15px;width: 200px;height: 40px;font-size: 1.3em;"
 								value="#{bundleDataSource['datascroller.button.deleteItem']}"
 								onclick="PF('confirmDeleteDialog').show();"
 								actionListener="#{dataScrollerBean.setCurrentItemSelectedForDelete(item)}"

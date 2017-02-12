@@ -118,8 +118,8 @@
 
 					</div>
 				</div>
-				<p:separator />
 				<div class="contactForm row" style="display: None;">
+					<p:separator />
 					<div class="row">
 						<div class="col-xs-12">
 							<p:commandButton icon="fa fa-cart-arrow-down"
@@ -127,12 +127,13 @@
 								update="msgTextArea,detailItemInfoSectionWrapper"
 								actionListener="#{itemDetailBean.buyItem}"
 								oncomplete=" var elem = $('.contactForm').eq(0);elem.hide();elem = $('.customDock')[0]; elem.scrollIntoView();"
-								styleClass="contactOwnerItemBtn" />
+								styleClass="contactOwnerItemBtnDown" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-xs-12">
 							<p:inputTextarea id="msgTextArea"
+								style="padding: 10px;"
 								value="#{itemDetailBean.messageToBuy}" rows="7"
 								styleClass="message_input_area" maxlength="200"
 								a:placeholder="#{bundle['itemDetail.textArea.message.placeholder']}" />

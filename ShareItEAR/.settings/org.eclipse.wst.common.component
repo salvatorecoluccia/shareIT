@@ -94,5 +94,18 @@
         <dependent-module archiveName="joda-convert-1.2.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/Google/GoogleWSDependendciesNEW/joda-convert-1.2.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="javax.ws.rs-api-2.0.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/javax.ws.rs-api-2.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jsr311-api-1.1.1.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/jsr311-api-1.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jersey-bundle-1.19.3.jar" deploy-path="/lib" handle="module:/classpath/lib/ShareItLibraries/jersey-bundle-1.19.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ShareItRest.war" deploy-path="/" handle="module:/resource/ShareItRest/ShareItRest">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>TavoliDiRegia</display-name>
-  
-  	<context-param>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>TavoliDiRegia</display-name>
+
+	<context-param>
 		<description>
 			se settato a false, il campo hidden contenente lo stato non 
 			utilizza un id fisso (in un portale si potrebbero avere id duplicati).
@@ -23,13 +26,13 @@
 		<param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
 		<param-value>true</param-value>
 	</context-param>
-  <context-param>
-	<description>
+	<context-param>
+		<description>
 		see org.apache.myfaces.shared.config.MyfacesConfig
 	</description>
-    <param-name>org.apache.myfaces.STRICT_JSF_2_ALLOW_SLASH_LIBRARY_NAME</param-name>
-    <param-value>true</param-value>
-  </context-param>
+		<param-name>org.apache.myfaces.STRICT_JSF_2_ALLOW_SLASH_LIBRARY_NAME</param-name>
+		<param-value>true</param-value>
+	</context-param>
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
 		<param-value>excite-bike</param-value>
@@ -39,24 +42,48 @@
 		<param-value>commons</param-value>
 	</context-param>
 	<context-param>
-		<param-name>primefaces.FONT_AWESOME </param-name>
+		<param-name>primefaces.FONT_AWESOME</param-name>
 		<param-value>true</param-value>
 	</context-param>
-	
+
 	<context-param>
-		<param-name>primefaces.CLIENT_SIDE_VALIDATION </param-name>
+		<param-name>primefaces.CLIENT_SIDE_VALIDATION</param-name>
 		<param-value>true</param-value>
 	</context-param>
-   
-   	<listener>
+
+	<listener>
 		<listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
 	</listener>
-	
+
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	
+	<!-- #########Aggiunto per rest services########## -->
+	<!-- 
+	<servlet>
+		<servlet-name>JAX-RS Application</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>rest.application.config.ApplicationConfig</param-value>
+		</init-param>
+		<init-param>
+			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JAX-RS Application</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	 -->
+	<!-- ################################ -->
+	
+	
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
@@ -65,17 +92,17 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-  
-	 <welcome-file-list>
-	   <welcome-file>index.html</welcome-file>
-	   <welcome-file>index.htm</welcome-file>
-	   <welcome-file>index.jsp</welcome-file>
-	   <welcome-file>default.html</welcome-file>
-	   <welcome-file>default.htm</welcome-file>
-	   <welcome-file>default.jsp</welcome-file>
-	 </welcome-file-list>
-	 
-	 <filter>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<filter>
 		<filter-name>PrimeFaces FileUpload Filter</filter-name>
 		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
 		<init-param>
@@ -87,7 +114,7 @@
 		<filter-name>PrimeFaces FileUpload Filter</filter-name>
 		<servlet-name>Faces Servlet</servlet-name>
 	</filter-mapping>
-	
+
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
 		<location>/error/errorGeneric.xhtml</location>
@@ -96,39 +123,39 @@
 		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
 		<location>/error/errorExpired.xhtml</location>
 	</error-page>
-	
-	
+
+
 	<error-page>
-	  <error-code>400</error-code>
-	  <location>/error/errorGeneric.xhtml</location>
+		<error-code>400</error-code>
+		<location>/error/errorGeneric.xhtml</location>
 	</error-page>
 	<error-page>
-	  <error-code>401</error-code>
-	  <location>/error/errorUnauthorized.xhtml</location>
+		<error-code>401</error-code>
+		<location>/error/errorUnauthorized.xhtml</location>
 	</error-page>
 	<error-page>
-	  <error-code>403</error-code>
-	  <location>/error/errorUnauthorized.xhtml</location>
+		<error-code>403</error-code>
+		<location>/error/errorUnauthorized.xhtml</location>
 	</error-page>
 	<error-page>
-	  <error-code>404</error-code>
-	  <location>/error/errorNotFound.xhtml</location>
+		<error-code>404</error-code>
+		<location>/error/errorNotFound.xhtml</location>
 	</error-page>
 	<error-page>
-	  <error-code>500</error-code>
-	  <location>/error/errorGeneric.xhtml</location>
+		<error-code>500</error-code>
+		<location>/error/errorGeneric.xhtml</location>
 	</error-page>
 	<error-page>
-	  <error-code>501</error-code>
-	  <location>/error/errorGeneric.xhtml</location>
+		<error-code>501</error-code>
+		<location>/error/errorGeneric.xhtml</location>
 	</error-page>
 	<error-page>
-	  <error-code>502</error-code>
-	  <location>/error/errorGeneric.xhtml</location>
+		<error-code>502</error-code>
+		<location>/error/errorGeneric.xhtml</location>
 	</error-page>
 	<error-page>
-	  <error-code>503</error-code>
-	  <location>/error/errorGeneric.xhtml</location>
+		<error-code>503</error-code>
+		<location>/error/errorGeneric.xhtml</location>
 	</error-page>
-	 
+
 </web-app>

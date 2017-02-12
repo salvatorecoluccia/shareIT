@@ -10,6 +10,7 @@
 		<project>ShareItServicesEJB</project>
 		<project>ShareItDBModel</project>
 		<project>ColucciaCommon</project>
+		<project>ShareItRest</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

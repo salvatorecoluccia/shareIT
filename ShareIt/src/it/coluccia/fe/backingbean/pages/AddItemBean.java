@@ -39,6 +39,8 @@ import it.common.fe.utils.FacesMessageUtils;
 public class AddItemBean extends BaseBean {
 
 	private final String CONFIRM_PHASE_ID = "confirmTab";
+	private final String LOCATION_PHASE_ID = "locationTab";
+	private final String DESCRIPTION_PHASE_ID = "descriptionTab";
 
 	private final String KEY_TITLE_SERVICE_ERROR = "msg.title.error.service";
 	private final String KEY_BODY_RETRIEVE_CATEGORIES_ERROR = "msg.body.error.retrieve.categories";
@@ -213,7 +215,20 @@ public class AddItemBean extends BaseBean {
 						KEY_BODY_GEOCODING_COMPILE_ERROR, getResourceBundle());
 				return event.getOldStep();
 			}
+		} else if (event.getNewStep().equals(LOCATION_PHASE_ID)) {
+			if (this.newItem == null || StringUtils.isBlank(this.newItem.getDescription())) {
+				FacesMessageUtils.addMessageWarningFromBundle(KEY_TITLE_SERVICE_WARNING,
+						KEY_BODY_COMPILE_WARNING, getResourceBundle());
+				return event.getOldStep();
+			}
+		}else if (event.getNewStep().equals(DESCRIPTION_PHASE_ID)) {
+			if (this.newItem == null || StringUtils.isBlank(this.newItem.getName()) || this.newItem.getPriceCredit() == null || this.categoryNameSelected == null || this.imageFile == null) {
+				FacesMessageUtils.addMessageWarningFromBundle(KEY_TITLE_SERVICE_WARNING,
+						KEY_BODY_COMPILE_WARNING, getResourceBundle());
+				return event.getOldStep();
+			}
 		}
+		
 		return event.getNewStep();
 	}
 

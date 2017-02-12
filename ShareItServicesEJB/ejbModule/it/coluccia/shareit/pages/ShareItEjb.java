@@ -168,7 +168,7 @@ public class ShareItEjb implements ShareItEjbLocal {
 			log.debug("Crediti buyer aggiornati correttamente..");
 
 			Users owner = userMapper.selectByPrimaryKey(item.getOwnerId());
-			owner.setCredit(buyer.getCredit().add(item.getPriceCredit()));
+			owner.setCredit(owner.getCredit().add(item.getPriceCredit()));
 			userMapper.updateByPrimaryKeySelective(owner);
 			log.debug("Crediti owner aggiornati correttamente..");
 		} catch (ServiceException e) {

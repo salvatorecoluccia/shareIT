@@ -55,7 +55,8 @@
 						<p:wizard id="addItemWizard"
 							flowListener="#{addItemBean.onFlowProcess}">
 							<p:tab id="general" title="General">
-								<p:panel header="#{bundle['addItem.wizard.header.general']}">
+								<p:panel id="generalPanel"
+									header="#{bundle['addItem.wizard.header.general']}">
 									<ui:remove>
 										<p:messages />
 									</ui:remove>
@@ -97,7 +98,10 @@
 											fileLimit="1" sizeLimit="20971520" mode="advanced"
 											allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="width: 30%;"
 											fileUploadListener="#{addItemBean.handleUploadEvent}"
-											auto="true" skinSimple="true" />
+											auto="true" skinSimple="true" update="generalPanel" />
+										<h:outputText id="dummyForLayout" />
+										<h:outputText style="font-size: 15px;font-style: italic;"
+											value="#{addItemBean.imageFile.getFileName()}" />
 									</p:panelGrid>
 								</p:panel>
 							</p:tab>

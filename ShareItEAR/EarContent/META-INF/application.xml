@@ -13,4 +13,10 @@
   <module>
     <ejb>ShareItServicesEJB.jar</ejb>
   </module>
+  <module>
+    <web>
+      <web-uri>ShareItRest.war</web-uri>
+      <context-root>ShareItRest</context-root>
+    </web>
+  </module>
 </application>

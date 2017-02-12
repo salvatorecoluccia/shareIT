@@ -9,24 +9,26 @@
 
 	<ui:define name="headSection">
 		<script>
-		window.onLoadCallback = function() {
+			window.onLoadCallback = function() {
 				console.log("logging out from google..");
-				if(gapi == undefined || gapi.auth2 == undefined){
+				if (gapi == undefined || gapi.auth2 == undefined) {
 					console.log("User is not sign in google");
 					return;
 				}
-				gapi.auth2.init({
-				      client_id: '525721307601-q7ahh9jk2e3ng7nd42o5tllovipo849t.apps.googleusercontent.com'
-				    }).then(function(){
-						var auth2 = gapi.auth2.getAuthInstance();
-						if(auth2 == undefined){
-							console.log("User is not sign in google");
-							return;
-						}
-					    auth2.signOut().then(function () {
-					      console.log('User signed out.');
-					    });
-				    });
+				gapi.auth2
+						.init(
+								{
+									client_id : '525721307601-q7ahh9jk2e3ng7nd42o5tllovipo849t.apps.googleusercontent.com'
+								}).then(function() {
+							var auth2 = gapi.auth2.getAuthInstance();
+							if (auth2 == undefined) {
+								console.log("User is not sign in google");
+								return;
+							}
+							auth2.signOut().then(function() {
+								console.log('User signed out.');
+							});
+						});
 			};
 		</script>
 		<h:outputStylesheet library="css" name="login-style.css"></h:outputStylesheet>
@@ -50,26 +52,29 @@
 					<div class="col-xs-12">
 						<div class="center-block">
 							<h:graphicImage
-								style="display: block;margin-right: auto;margin-left: auto;"
+								style="width: 25em;display: block;margin-right: auto;margin-left: auto;"
 								library="images" name="logo.png" />
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<h:form>
-						<div class="col-xs-6 ">
+						<div class="col-xs-12 ">
 							<div class="center-block">
-								<p:commandButton styleClass="centerRightButton"
+								<p:commandButton styleClass="customButton centerButton"
+									style="margin-top: -0.5em !important;"
 									value="#{bundle['button.login']}"
-									onclick="PF('loginDialog').show(100)" id="buttonLogin" />
+									onclick="PF('loginDialog').show(100)" id="buttonLogin"/>
 							</div>
 						</div>
-						<div class="col-xs-6">
-							<div class="center-block">
-								<p:commandButton styleClass="centerLeftButton"
-									value="#{bundle['button.signin']}" id="buttonSignIn" />
+						<ui:remove>
+							<div class="col-xs-6">
+								<div class="center-block">
+									<p:commandButton styleClass="centerLeftButton"
+										value="#{bundle['button.signin']}" id="buttonSignIn" />
+								</div>
 							</div>
-						</div>
+						</ui:remove>
 					</h:form>
 				</div>
 			</section>
