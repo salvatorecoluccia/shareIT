@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
 import it.coluccia.common.constants.CommonConstants;
-import it.coluccia.common.context.ServiceContext;
 
 public class ServiceHelper {
 

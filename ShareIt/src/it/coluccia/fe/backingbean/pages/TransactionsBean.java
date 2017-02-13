@@ -55,7 +55,7 @@ public class TransactionsBean extends BaseBean{
 		private List<TransactionFrontEnd> transactionsUserBuyer;
 		private Users user;
 
-
+		
 		@PostConstruct
 		public void init() {
 			logger.debug("TransactionsBean instanziato");
@@ -77,9 +77,9 @@ public class TransactionsBean extends BaseBean{
 				logger.debug("init bean end");
 			}
 			
-
-		}
 		
+		}
+
 		private List<TransactionFrontEnd> retrieveTransactionForUser() throws ServiceException{
 			List<Items> itemsActive = serviceLocal.retrieveAllSellItems();
 			List<Transactions> transactionsOfUser = serviceLocal.retrieveAllUserBuyerTransactions(user.getId());
