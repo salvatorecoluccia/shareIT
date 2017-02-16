@@ -20,6 +20,11 @@ import it.coluccia.shareit.login.EjbLoginLocal;
 import it.common.fe.utils.FacesMessageUtils;
 import it.common.fe.utils.FacesUtils;
 
+/**
+ * It is a jsfBean that maps the login page. It is sessionScoped to permit the use in all moments of navigation
+ * @author s.coluccia
+ *
+ */
 @SessionScoped
 @ManagedBean(name = "loginBean")
 public class LoginBean extends BaseBean {
@@ -125,6 +130,10 @@ public class LoginBean extends BaseBean {
 		this.emailRegister = emailRegister;
 	}
 
+	/**
+	 * It log in a user if the username and password that the user has inserted match with a record in database
+	 * @return
+	 */
 	public String validateUserPassword() {
 		logger.debug("Start validatePassword");
 		RequestContext context = RequestContext.getCurrentInstance();
@@ -158,6 +167,10 @@ public class LoginBean extends BaseBean {
 		return returnValue;
 	}
 
+	/**
+	 * It is used to execute the registration of new user.
+	 * TODO: non presente nella demo
+	 */
 	public void signIn() {
 		logger.debug("SignIn bean started");
 		try {
@@ -178,7 +191,10 @@ public class LoginBean extends BaseBean {
 		}
 	}
 
-	// logout event, invalidate session
+	/**
+	 * It invalidate the current user session and redirect the user to loginPage by implicit jsf navigation
+	 * @return
+	 */
 	public String logout() {
 		logger.debug("Start logout");
 		HttpSession session = FacesUtils.getSession();

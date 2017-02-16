@@ -6,6 +6,11 @@ import java.util.Date;
 import it.coluccia.shareit.dto.items.shareitdb.Items;
 import it.coluccia.shareit.dto.transactions.shareitdb.Transactions;
 
+/**
+ * It is the front end representation of Transaction object
+ * @author s.coluccia
+ *
+ */
 public class TransactionFrontEnd {
 	Integer transactionId;
 	Integer idBuyer;

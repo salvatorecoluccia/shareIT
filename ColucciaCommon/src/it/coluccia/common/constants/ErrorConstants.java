@@ -1,5 +1,10 @@
 package it.coluccia.common.constants;
 
+/**
+ * Represents the error constants used in the project
+ * @author s.coluccia
+ *
+ */
 public class ErrorConstants {
 
 	private ErrorConstants() {

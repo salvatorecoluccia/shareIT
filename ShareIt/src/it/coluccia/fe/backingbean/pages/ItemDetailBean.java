@@ -18,6 +18,11 @@ import it.coluccia.shareit.home.EjbHomeLocal;
 import it.coluccia.shareit.pages.ShareItEjbLocal;
 import it.common.fe.utils.FacesMessageUtils;
 
+/**
+ * It is a jsf page bean that map the page Itemdetail
+ * @author s.coluccia
+ *
+ */
 @SessionScoped
 @ManagedBean(name = "itemDetailBean")
 public class ItemDetailBean extends BaseBean {
@@ -42,6 +47,9 @@ public class ItemDetailBean extends BaseBean {
 	@EJB
 	private ShareItEjbLocal serviceLocal;
 
+	/**
+	 * It initialize the data bean
+	 */
 	@PostConstruct
 	public void init() {
 		logger.debug("ItemDetailBean instanziato con itemId= " + itemId);
@@ -77,7 +85,9 @@ public class ItemDetailBean extends BaseBean {
 		return MAPPED_PAGE;
 	}
 	
-	
+	/**
+	 * It buy the item that the user has selected.
+	 */
 	public void buyItem(){
 		try {
 			logger.debug("buyItem start");

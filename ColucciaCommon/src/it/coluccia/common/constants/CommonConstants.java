@@ -1,5 +1,10 @@
 package it.coluccia.common.constants;
 
+/**
+ * Represents the constants shared by all parts of project
+ * @author s.coluccia
+ *
+ */
 public class CommonConstants {
 	
 	private CommonConstants() {

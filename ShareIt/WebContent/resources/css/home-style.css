@@ -24,11 +24,11 @@
 
 .labelSection {
 	font-weight: bolder !important;
-	font-size: 1em !important;
+	font-size: 16px !important;
 }
 
 .titleSection {
-	font-size: 3.5em !important;
+	font-size: 2em !important;
 	text-align: center !important;
 	background: rgba(46, 145, 233, 0.32);
 	width: 99%;
@@ -40,7 +40,7 @@
 }
 
 .informationSection {
-	font-size: 1.5em !important;
+	font-size: 16px !important;
 }
 
 .myDataScroller .ui-panelgrid-content {
@@ -51,8 +51,8 @@
 .datascrollerImage img {
 	width: 95%;
 	height: 100%;
-	max-height: 300px;
-	max-width: 600;
+	max-height: 220px;
+	max-width: 500;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
@@ -63,8 +63,9 @@
 	margin-right: 70px;
 	margin-top: 1em;
 	margin-bottom: 1em;
+	padding: 10px;
 }
 
 .ricercaAvanzataTitle {
-	font-size: x-large !important;
+	font-size: 18px !important;
 }

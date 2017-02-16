@@ -2,6 +2,13 @@ package it.coluccia.shareit.login;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+/**
+ * It maps a json object that represent a GoogleAuthResponse.
+ * It is used by jackson library to read json data.
+ * @author s.coluccia
+ *
+ */
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 class GoogleAuthResponse{
 	private String email;

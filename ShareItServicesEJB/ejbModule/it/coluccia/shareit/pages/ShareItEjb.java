@@ -9,7 +9,6 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -36,6 +35,12 @@ import it.coluccia.shareit.dto.transactions.shareitdb.TransactionsExample;
 import it.coluccia.shareit.dto.users.shareitdb.Users;
 import it.coluccia.shareit.dto.users.shareitdb.UsersExample;
 
+/**
+ * It represent the ejb layer for all pages functionality
+ * It is implemented like stateless local bean
+ * @author s.coluccia
+ *
+ */
 @Stateless
 @LocalBean
 public class ShareItEjb implements ShareItEjbLocal {
@@ -56,12 +61,12 @@ public class ShareItEjb implements ShareItEjbLocal {
 	 */
 	public ShareItEjb() {
 		geoApiContext = new GeoApiContext().setApiKey(CommonConstants.GOOGLE_API_KEY);
-		/*
-		 * GeocodingResult[] results = GeocodingApi.geocode(context,
-		 * "1600 Amphitheatre Parkway Mountain View, CA 94043").await();
-		 */
 	}
 
+	/**
+	 * It use the google geocoding services to transform a string that represent a place in a object
+	 * that contains precise information for the same place
+	 */
 	public GeocodingResult[] geocodeAddress(String addressString) throws ServiceException {
 		log.debug("Service geocodeAddress start");
 		GeocodingResult[] result = null;
@@ -78,6 +83,11 @@ public class ShareItEjb implements ShareItEjbLocal {
 		}
 	}
 
+	/**
+	 * It calls a google geocoding service to transform the latitude and longitude specified into an
+	 * object that contains information for the place specified.
+	 * @return a GeocofingResult
+	 */
 	public GeocodingResult[] geocodeLatLng(BigDecimal lat, BigDecimal lng) throws ServiceException {
 		log.debug("Service geocodeLatLng started");
 		GeocodingResult[] result;
@@ -99,6 +109,10 @@ public class ShareItEjb implements ShareItEjbLocal {
 		}
 	}
 
+	/**
+	 * It retrieves the item specified by id parameter.
+	 * If no items exists with the id specified, it returns null
+	 */
 	public Items retrieveItemById(String id) throws ServiceException {
 		log.debug("Service retrieveItemById started");
 		Items result;
@@ -116,6 +130,15 @@ public class ShareItEjb implements ShareItEjbLocal {
 		return result;
 	}
 
+	/**
+	 * It buy an item specified by item parameter.
+	 * The item is bought by the user specified by username and password parameters.
+	 * It adds the credits of item to the user seller and remove them from the credits of user buyer
+	 * @param username username of user
+	 * @param password password of user
+	 * @param item item that want to buy
+	 * @param message the optional message that user specified for the transaction
+	 */
 	public void buyItem(String username, String password, Items item, String message) throws ServiceException {
 
 		log.debug("Service buyItem started");
@@ -184,6 +207,9 @@ public class ShareItEjb implements ShareItEjbLocal {
 
 	}
 
+	/**
+	 * it retrieves all categories from database
+	 */
 	public List<Categories> retrieveCategories() throws ServiceException {
 		log.debug("Service retrieveCategories started");
 		List<Categories> result;
@@ -201,6 +227,10 @@ public class ShareItEjb implements ShareItEjbLocal {
 		return result;
 	}
 
+	/**
+	 * It publish the item specified by parameter newItem and assign it to the user specified by username and passowrd 
+	 * parameters
+	 */
 	public void publishItem(Items newItem, String username, String password) throws ServiceException {
 		log.debug("Service publishItem started");
 		Items result;
@@ -246,6 +276,9 @@ public class ShareItEjb implements ShareItEjbLocal {
 		return result.get(0);
 	}
 
+	/**
+	 * It retrieves the user object specified by username in database
+	 */
 	public Users retrieveCurrentUserObj(String username) throws ServiceException {
 		log.debug("Service retrieveCurrentUserObj started");
 		Users result;
@@ -262,6 +295,9 @@ public class ShareItEjb implements ShareItEjbLocal {
 		return result;
 	}
 
+	/**
+	 * Retrieve all transactions where the user specified by userId is the buyer
+	 */
 	public List<Transactions> retrieveAllUserBuyerTransactions(Integer userId) throws ServiceException {
 		log.debug("Service retrieveAllUserBuyerTransactions started");
 		try {
@@ -279,6 +315,9 @@ public class ShareItEjb implements ShareItEjbLocal {
 		}
 	}
 
+	/**
+	 * Retrieve all transactions that contains an item that is present in items list
+	 */
 	public List<Transactions> retrieveAllUserTransactions(List<Items> items) throws ServiceException {
 		log.debug("Service retrieveAllUserBuyerTransactions started");
 		try {
@@ -303,6 +342,9 @@ public class ShareItEjb implements ShareItEjbLocal {
 		}
 	}
 
+	/**
+	 * It retrieves all items that are sold
+	 */
 	public List<Items> retrieveAllSellItems() throws ServiceException {
 
 		log.debug("Service retrieveAllActiveItems started");

@@ -6,6 +6,12 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * It represents the item informations specified in json format.
+ * It is a JSXB class
+ * @author s.coluccia
+ *
+ */
 @XmlRootElement
 public class ItemsJsonMapped {
 	

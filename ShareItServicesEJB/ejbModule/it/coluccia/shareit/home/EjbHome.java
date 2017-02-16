@@ -31,6 +31,11 @@ import it.coluccia.shareit.dto.items.shareitdb.ItemsExample.Criteria;
 import it.coluccia.shareit.dto.users.shareitdb.Users;
 import it.coluccia.shareit.dto.users.shareitdb.UsersExample;
 
+/**
+ * It is the ejb layer specified for the homepage functionality
+ * @author s.coluccia
+ *
+ */
 @Stateless
 @LocalBean
 public class EjbHome implements EjbHomeLocal {
@@ -42,12 +47,18 @@ public class EjbHome implements EjbHomeLocal {
 	
 	private GeoApiContext geoApiContext;
 	
+	/**
+	 * It creates an instance of EjbHome. Initialize the GeoApiContext field of class
+	 */
 	public EjbHome(){
 		geoApiContext = new GeoApiContext().setApiKey(CommonConstants.GOOGLE_API_KEY);
 	}
 	
 	private Logger log = LogManager.getLogger(this.getClass().getCanonicalName());
 	
+	/**
+	 * Retrieve from the databese all the categories
+	 */
 	public List<Categories> retrieveCategories() throws ServiceException{
 		log.debug("Service retrieveCategories started");
 		List<Categories> result;
@@ -65,6 +76,10 @@ public class EjbHome implements EjbHomeLocal {
 		return result;
 	}
 	
+	/**
+	 * It retrieves from database all active items.
+	 * If currentUser is specified, it retrieves alla active items that have currentUser like owner
+	 */
 	public List<Items> retrieveAllActiveItems(String currentUser) throws ServiceException{
 		log.debug("Service retrieveAllActiveItems started");
 		List<Items> result;
@@ -100,6 +115,9 @@ public class EjbHome implements EjbHomeLocal {
 		return result.get(0);
 	}
 	
+	/**
+	 * Retrieves all active items that matches with the filters specified.
+	 */
 	public List<Items> retrieveFilteredActiveItems(String titleFilter,Integer categoryIdFilter,int minCreditsFilter,int maxCreditsFilter,String currentUser) throws ServiceException{
 		log.debug("Service retrieveFilteredActiveItems started");
 		List<Items> result;
@@ -135,6 +153,9 @@ public class EjbHome implements EjbHomeLocal {
 		return result;
 	}
 	
+	/**
+	 * It deletes the item specified by parameter item
+	 */
 	public void deleteItem(Items item) throws ServiceException{
 		log.debug("Service deleteItem started");
 		try {
@@ -153,6 +174,10 @@ public class EjbHome implements EjbHomeLocal {
 		}
 	}
 	
+	/**
+	 * It calls the google geocode service to transform a latitude and longitude into an object that maps information
+	 * for the specified place.
+	 */
 	public GeocodingResult[] geocodeLatLng(BigDecimal lat, BigDecimal lng) throws ServiceException{
 		log.debug("Service geocodeLatLng started");
 		GeocodingResult[] result;

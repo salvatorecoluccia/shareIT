@@ -34,6 +34,11 @@ import it.coluccia.shareit.dto.items.shareitdb.Items;
 import it.coluccia.shareit.pages.ShareItEjbLocal;
 import it.common.fe.utils.FacesMessageUtils;
 
+/**
+ * It is a jsf bean that maps the page addItem
+ * @author s.coluccia
+ *
+ */
 @ViewScoped
 @ManagedBean(name = "addItemBean")
 public class AddItemBean extends BaseBean {
@@ -71,6 +76,9 @@ public class AddItemBean extends BaseBean {
 	private final String MAPPED_NAME = "addItemBean";
 	private final String MAPPED_PAGE = "addItem";
 
+	/**
+	 * Initialize the page data after the bean creation
+	 */
 	@PostConstruct
 	public void init() {
 		logger.debug("AddItemBean instanziato");
@@ -122,6 +130,9 @@ public class AddItemBean extends BaseBean {
 		}
 	}
 
+	/**
+	 * It call the geocodeService of GoogleServices suite to translate an userInput string into a latitude and longitude coordinates
+	 */
 	public void geocodeAddress() {
 		logger.debug("geocodeAddress start");
 		try {
@@ -146,6 +157,9 @@ public class AddItemBean extends BaseBean {
 		}
 	}
 
+	/**
+	 * It execute the publish of new item. If not all required information are set in the bean, it return and not insert new item
+	 */
 	public void publish() {
 		logger.debug("publish start");
 
@@ -172,6 +186,10 @@ public class AddItemBean extends BaseBean {
 		}
 	}
 
+	/**
+	 * Return a string that represent the outcome match specified in faces-config.xml to go to homePage
+	 * @return
+	 */
 	public String goToHome() {
 		logger.debug("..redirecting to Home page");
 		return HomeBean.getStaticMappedPage();
@@ -202,11 +220,21 @@ public class AddItemBean extends BaseBean {
 		return result;
 	}
 
+	/**
+	 * It is fired when the user upload a new image
+	 * @param event
+	 */
 	public void handleUploadEvent(FileUploadEvent event) {
 		UploadedFile uploadedFile = event.getFile();
 		this.setImageFile(event.getFile());
 	}
 
+	/**
+	 * This is called every time the user move in the additem wizard.
+	 * It blocks the navigation if not all required information are set
+	 * @param event
+	 * @return
+	 */
 	public String onFlowProcess(FlowEvent event) {
 		logger.debug("onFlowProcess start, eventPhase: " + event.getNewStep());
 		if (event.getNewStep().equals(CONFIRM_PHASE_ID)) {

@@ -16,6 +16,12 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * It is an implementation of javax.servlet.Filter class. It filters all request for an xhtml page
+ * of the application
+ * @author s.coluccia
+ *
+ */
 @WebFilter(filterName = "AuthFilter", urlPatterns = { "*.xhtml" })
 public class CustomSecurityFilter implements Filter {
 
@@ -26,6 +32,10 @@ public class CustomSecurityFilter implements Filter {
 
 	}
 
+	/**
+	 * It redirect all request that are done from not logged in users. 
+	 * It also redirect to home page all request for the loginPage that are done from logged in users.
+	 */
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {

@@ -1,8 +1,6 @@
 package it.coluccia.fe.backingbean.pages;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,7 +8,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -24,6 +21,12 @@ import it.coluccia.shareit.home.EjbHomeLocal;
 import it.coluccia.shareit.pages.ShareItEjbLocal;
 import it.common.fe.utils.FacesMessageUtils;
 import it.common.fe.utils.TransactionFrontEnd;
+
+/**
+ * Is a Jsf bean that map the web page of transactions
+ * @author s.coluccia
+ *
+ */
 
 @ViewScoped
 @ManagedBean(name = "transactionsBean")
@@ -55,7 +58,9 @@ public class TransactionsBean extends BaseBean{
 		private List<TransactionFrontEnd> transactionsUserBuyer;
 		private Users user;
 
-		
+		/**
+		 * It is called after bean creation and initialize the data used into functions
+		 */
 		@PostConstruct
 		public void init() {
 			logger.debug("TransactionsBean instanziato");
@@ -111,6 +116,11 @@ public class TransactionsBean extends BaseBean{
 			return result;
 		}
 		
+		/**
+		 * Return a string that represents the outcome specified in face-config.xml that matches with item details web page
+		 * @param itemId
+		 * @return
+		 */
 		public String goToDetailsPage(int itemId) {
 			itemDetailBean.setItemId(String.valueOf(itemId));
 			itemDetailBean.init();

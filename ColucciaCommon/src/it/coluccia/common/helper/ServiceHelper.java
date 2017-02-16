@@ -15,6 +15,11 @@ import org.slf4j.MDC;
 
 import it.coluccia.common.constants.CommonConstants;
 
+/**
+ * It is an utility class to execute query and interfacing with data layer
+ * @author s.coluccia
+ *
+ */
 public class ServiceHelper {
 
 	protected static final Logger log = LoggerFactory.getLogger(ServiceHelper.class);
@@ -28,7 +33,10 @@ public class ServiceHelper {
 	protected  static ThreadLocal<SqlSession> session = new ThreadLocal<SqlSession>();
 
 	
-	
+	/**
+	 * It opens a database session context
+	 * @throws IOException
+	 */
 	public static void openDataBaseSession() throws IOException {
 		session.set(openSession());
 	}
@@ -50,11 +58,20 @@ public class ServiceHelper {
 		}
 	}
 	
+	/**
+	 * It returns the sqlMapper to execute queries
+	 * @return
+	 */
 	public static SqlSessionFactory getSqlMapper() {
 		return sqlMapper;
 	}
 	
-	
+	/**
+	 * It returns the mapper to execute queries for the DAO class specified by clazz
+	 * @param clazz
+	 * @return
+	 * @throws Exception
+	 */
 	public static <T> T getMapper(Class<T> clazz) throws Exception {
 		SqlSession mySession = session.get();
 		if (mySession == null) {
@@ -67,6 +84,9 @@ public class ServiceHelper {
 		return mapper;
 	}
 	
+	/**
+	 * It close the session context precedentally opened
+	 */
 	public static final void closeDataBaseSession(){
 		SqlSession mySession = session.get();
 		if(null != mySession){

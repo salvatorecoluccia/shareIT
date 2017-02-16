@@ -16,6 +16,11 @@ import it.coluccia.shareit.dto.users.shareitdb.Users;
 import it.coluccia.shareit.pages.ShareItEjbLocal;
 import it.common.fe.utils.FacesMessageUtils;
 
+/**
+ * Jsf backing bean that map the page of user profile
+ * @author s.coluccia
+ *
+ */
 @ViewScoped
 @ManagedBean(name = "profileBean")
 public class ProfileBean extends BaseBean {
@@ -41,6 +46,9 @@ public class ProfileBean extends BaseBean {
 	@ManagedProperty(value = "#{loginBean}")
 	private LoginBean loginBean;
 
+	/**
+	 * It is called after bean creation and initialize all data used into bean functions
+	 */
 	@PostConstruct
 	public void init() {
 		logger.debug("ProfileBean instanziato");

@@ -19,7 +19,11 @@ import org.apache.log4j.PropertyConfigurator;
 
 import it.common.fe.utils.FacesUtils;
 
-
+/**
+ * It is the base abstract class that represents a jsf bean
+ * @author s.coluccia
+ *
+ */
 public abstract class BaseBean implements Serializable {
 	
 	

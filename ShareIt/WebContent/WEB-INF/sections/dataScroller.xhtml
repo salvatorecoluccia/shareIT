@@ -141,19 +141,17 @@
 									value="#{dataScrollerBean.itemsAddress.get(item.id)}" />
 							</div>
 						</div>
-
 						<div class="row descriptionButton">
 							<p:commandButton
-								style="float: right;margin-right: 10px;border-radius: 10px;margin-top: 3em;width: 200px;height: 40px;font-size: 1.3em;"
+								style="float: right;margin-right: 10px;border-radius: 10px;margin-top: 2.2em;width: 200px;font-size: 1em;"
 								value="#{bundleDataSource['datascroller.button.goToDetails']}"
 								action="#{dataScrollerBean.goToDetailsPage(item.id)}"
 								styleClass="ui-priority-primary" />
 						</div>
-
 						<div class="row deleteButton">
 							<p:commandButton
 								rendered="#{dataScrollerBean.currentUser != null}"
-								style="float: right;margin-right: 10px;border-radius: 10px;margin-top: 15px;width: 200px;height: 40px;font-size: 1.3em;"
+								style="float: right;margin-right: 10px;border-radius: 10px;margin-top:5px;width: 200px;font-size: 1em;"
 								value="#{bundleDataSource['datascroller.button.deleteItem']}"
 								onclick="PF('confirmDeleteDialog').show();"
 								actionListener="#{dataScrollerBean.setCurrentItemSelectedForDelete(item)}"

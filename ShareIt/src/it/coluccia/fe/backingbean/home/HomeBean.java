@@ -8,6 +8,11 @@ import javax.faces.bean.ViewScoped;
 import it.coluccia.fe.backingbean.base.BaseBean;
 import it.coluccia.shareit.home.EjbHomeLocal;
 
+/**
+ * It class is a jsf bean that map the home page of ShareIt project
+ * @author s.coluccia
+ *
+ */
 @ViewScoped
 @ManagedBean(name="homeBean")
 public class HomeBean extends BaseBean {
@@ -23,7 +28,9 @@ public class HomeBean extends BaseBean {
 	@EJB
 	private EjbHomeLocal serviceLocal;
 	
-	
+	/**
+	 * It initialize the data of bean
+	 */
 	@PostConstruct
 	public void init() {
 		logger.debug("HomeBean instanziato");

@@ -24,6 +24,12 @@ import it.coluccia.shareit.dto.items.shareitdb.Items;
 import it.coluccia.shareit.home.EjbHomeLocal;
 import it.common.fe.utils.FacesMessageUtils;
 
+
+/**
+ * It is the jsf bean that map the datascroller component
+ * @author s.coluccia
+ *
+ */
 @ViewScoped
 @ManagedBean(name = "dataScrollerBean")
 public class DataScrollerBean extends BaseBean {
@@ -60,6 +66,9 @@ public class DataScrollerBean extends BaseBean {
 	@EJB
 	private EjbHomeLocal serviceLocal;
 
+	/**
+	 * It initializes the bean data
+	 */
 	@PostConstruct
 	public void init() {
 		logger.debug("DataScrollerBean instanziato");
@@ -121,12 +130,21 @@ public class DataScrollerBean extends BaseBean {
 
 	}
 
+	/**
+	 * Return a string represent the outcome mapped in faces-config.xml
+	 * @param itemId
+	 * @return
+	 */
 	public String goToDetailsPage(String itemId) {
 		itemDetailBean.setItemId(itemId);
 		itemDetailBean.init();
 		return itemDetailBean.getMappedPage();
 	}
 
+	/**
+	 * It execute an advance items search. It uses the filters specified by user 
+	 * in the page before this call
+	 */
 	public void doAdvancedSearch() {
 		logger.debug("doAdvancedSearch bean start");
 		try {
@@ -146,6 +164,10 @@ public class DataScrollerBean extends BaseBean {
 		}
 	}
 
+	/**
+	 * Delete an item. It is a logical delete
+	 * The item that want to delete must be selected before otherwise the method return immediatelly
+	 */
 	public void deleteItem() {
 		logger.debug("deleteItem bean start");
 		if (currentItemSelectedForDelete == null) {

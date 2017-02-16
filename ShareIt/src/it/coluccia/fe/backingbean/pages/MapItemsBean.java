@@ -26,6 +26,11 @@ import it.coluccia.shareit.home.EjbHomeLocal;
 import it.coluccia.shareit.pages.ShareItEjbLocal;
 import it.common.fe.utils.FacesMessageUtils;
 
+/**
+ * It a jsf page bean that map the page mapsItem
+ * @author s.coluccia
+ *
+ */
 @ViewScoped
 @ManagedBean(name = "mapsItemBean")
 public class MapItemsBean extends BaseBean {
@@ -53,6 +58,9 @@ public class MapItemsBean extends BaseBean {
 	private Map<Integer, String> itemsAddress;
 	private String initialMapCenter;
 
+	/**
+	 * It intialize all data of bean after his creation
+	 */
 	@PostConstruct
 	public void init() {
 		logger.debug("MapItemsBean instanziato");
@@ -78,6 +86,10 @@ public class MapItemsBean extends BaseBean {
 
 	}
 	
+	/**
+	 * Return a string that is the outcome specified in faces-config.xml that match with detailsPage
+	 * @return
+	 */
 	public String goToDetailsPage() {
 		String itemId = ((Items)markerItemSelected.getData()).getId().toString();
 		itemDetailBean.setItemId(itemId);
@@ -135,10 +147,18 @@ public class MapItemsBean extends BaseBean {
 
 	}
 
+	/**
+	 * It is called every time the user click on a marker
+	 * @param event
+	 */
 	public void onMarkerSelect(OverlaySelectEvent event) {
 		markerItemSelected = (Marker) event.getOverlay();
 	}
 	
+	/**
+	 * It return a string represent the formatted address for the item of marker selected
+	 * @return
+	 */
 	public String getFormattedAddresMarkerSelected(){
 		if(markerItemSelected != null){
 			Integer id = ((Items)markerItemSelected.getData()).getId();
