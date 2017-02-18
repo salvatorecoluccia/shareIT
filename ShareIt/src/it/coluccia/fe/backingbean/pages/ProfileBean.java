@@ -25,6 +25,10 @@ import it.common.fe.utils.FacesMessageUtils;
 @ManagedBean(name = "profileBean")
 public class ProfileBean extends BaseBean {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1951774769542028450L;
 	private final String KEY_TITLE_INSTANTIATE_ERROR = "msg.title.profile.error.instantiate";
 	private final String KEY_BODY_INSTANTIATE_ERROR = "msg.description.profile.error.instantiate";
 	

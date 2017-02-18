@@ -34,7 +34,7 @@ public abstract class BaseBean implements Serializable {
 
 	private static final long serialVersionUID = -373552439493490466L;
 
-	private static final String COMMON_RESOURCE_BUNDLE = "it.reply.nl.CommonResource";
+	private static final String COMMON_RESOURCE_BUNDLE = "it.coluccia.shareit.resources.CommonResource";
 
 
 	protected Logger logger = LogManager.getLogger(this.getClass().getCanonicalName());

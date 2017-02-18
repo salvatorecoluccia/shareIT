@@ -1,20 +1,15 @@
 package it.coluccia.fe.backingbean.pages;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.ConversationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 
 import it.coluccia.common.exception.ServiceException;
 import it.coluccia.fe.backingbean.base.BaseBean;
 import it.coluccia.fe.backingbean.login.LoginBean;
 import it.coluccia.shareit.dto.items.shareitdb.Items;
-import it.coluccia.shareit.home.EjbHomeLocal;
 import it.coluccia.shareit.pages.ShareItEjbLocal;
 import it.common.fe.utils.FacesMessageUtils;
 
@@ -27,6 +22,10 @@ import it.common.fe.utils.FacesMessageUtils;
 @ManagedBean(name = "itemDetailBean")
 public class ItemDetailBean extends BaseBean {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8735506609393936283L;
 	private final String KEY_TITLE_SERVICE_ERROR = "msg.title.error.service";
 	private final String KEY_BODY_RETRIEVE_ITEM_ERROR = "msg.body.error.service.retrieveItem";
 	private final String KEY_TITLE_BUY_OK  = "msg.title.success.buy";

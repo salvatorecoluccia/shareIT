@@ -35,6 +35,11 @@ import it.common.fe.utils.FacesMessageUtils;
 @ManagedBean(name = "mapsItemBean")
 public class MapItemsBean extends BaseBean {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5753930396222928994L;
+
 	@EJB
 	private ShareItEjbLocal serviceLocal;
 

@@ -32,6 +32,11 @@ import it.common.fe.utils.TransactionFrontEnd;
 @ManagedBean(name = "transactionsBean")
 public class TransactionsBean extends BaseBean{
 
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 794895746174420377L;
+
 		@EJB
 		private ShareItEjbLocal serviceLocal;
 

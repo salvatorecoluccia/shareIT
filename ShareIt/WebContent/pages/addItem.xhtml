@@ -64,21 +64,24 @@
 										<h:outputText
 											value="#{bundle['addItem.wizard.general.title']}" />
 										<p:inputText value="#{addItemBean.newItem.name}"
+											style="height: 80%;"
 											requiredMessage="#{bundle['addItem.wizard.general.title.requiredMessage']}"
 											required="true"
 											label="#{bundle['addItem.wizard.general.title']}" />
 										<h:outputText
 											value="#{bundle['addItem.wizard.general.price']}" />
 										<p:inputNumber value="#{addItemBean.newItem.priceCredit}"
+											style="height: 80%;"
 											requiredMessage="#{bundle['addItem.wizard.general.price.requiredMessage']}"
 											symbol=" Credits" symbolPosition="s" decimalSeparator=","
 											thousandSeparator="." required="true" minValue="0.00"
-											maxValue="100000" />
+											maxValue="20000" />
 										<h:outputText
 											value="#{bundle['addItem.wizard.general.category']}" />
 										<p:selectOneMenu value="#{addItemBean.categoryNameSelected}"
 											panelStyle="width:180px" effect="fade" var="category"
 											filter="true" required="true"
+											style="font-size:15px;"
 											requiredMessage="#{bundle['addItem.wizard.general.category.requiredMessage']}"
 											filterMatchMode="startsWith">
 											<f:selectItems value="#{addItemBean.categoriesName}"
@@ -95,11 +98,11 @@
 											fileLimitMessage="#{bundle['addItem.wizard.general.file.fileLimitMessage']}"
 											requiredMessage="#{bundle['addItem.wizard.general.file.requiredMessage']}"
 											fileLimit="1" sizeLimit="20971520" mode="advanced"
-											allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="width: 30%;"
+											allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="width: 30%;height:80%;"
 											fileUploadListener="#{addItemBean.handleUploadEvent}"
-											auto="true" skinSimple="true" update="generalPanel" />
+											auto="true" skinSimple="true" update="imageFileName" />
 										<h:outputText id="dummyForLayout" />
-										<h:outputText style="font-size: 15px;font-style: italic;"
+										<h:outputText id="imageFileName" style="font-size: 15px;font-style: italic;height:80%;"
 											value="#{addItemBean.imageFile.getFileName()}" />
 									</p:panelGrid>
 								</p:panel>

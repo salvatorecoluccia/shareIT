@@ -176,9 +176,9 @@ public class DataScrollerBean extends BaseBean {
 		}
 		try {
 			serviceLocal.deleteItem(currentItemSelectedForDelete);
+			init();
 			FacesMessageUtils.addMessageInfoFromBundle(KEY_TITLE_SERVICE_SUCCESS, KEY_BODY_DELETE_SUCCESS,
 					getResourceBundle());
-			init();
 		} catch (ServiceException e) {
 			logger.debug("erore durante deleteItem");
 			FacesMessageUtils.addMessageErrorFromBundle(KEY_TITLE_SERVICE_ERROR, KEY_BODY_DELETE_ERROR,

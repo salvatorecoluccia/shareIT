@@ -11,10 +11,10 @@ import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl;
 
-public class ReplyTypeResolver extends JavaTypeResolverDefaultImpl {
+public class ShareItTypeResolver extends JavaTypeResolverDefaultImpl {
 
-	private static final String PROP_USE_REPLY_TYPE_RESOLVER = "useReplyTypeResolver";
-	private static final String PROP_REPLY_TIMESTAMP_COLUMNS = "useReplyTypeResolver.timestampColumns";
+	private static final String PROP_USE_REPLY_TYPE_RESOLVER = "useShareItTypeResolver";
+	private static final String PROP_REPLY_TIMESTAMP_COLUMNS = "useShareItTypeResolver.timestampColumns";
 
 	private Map<Integer, Map<String,FullyQualifiedJavaType>> jdbcTypeInformationCustom = new HashMap<Integer, Map<String,FullyQualifiedJavaType>>();
 	

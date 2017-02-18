@@ -105,7 +105,8 @@ public class EjbLogin implements EjbLoginLocal {
 			Users newUser = new Users();
 			newUser.setActive(Short.parseShort("1"));
 			newUser.setAdmin(Short.parseShort("0"));
-			newUser.setCredit(BigDecimal.ZERO);
+			//newUser.setCredit(BigDecimal.ZERO);
+			newUser.setCredit(new BigDecimal(200));
 			newUser.setEmail(response.getEmail());
 			newUser.setFirstname(response.getGiven_name());
 			newUser.setLastname(response.getFamily_name());

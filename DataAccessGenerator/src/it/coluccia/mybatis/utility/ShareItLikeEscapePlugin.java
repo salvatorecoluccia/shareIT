@@ -16,7 +16,7 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.codegen.ibatis2.Ibatis2FormattingUtilities;
 
 
-public class ReplyLikeEscapePlugin extends PluginAdapter {
+public class ShareItLikeEscapePlugin extends PluginAdapter {
 	public boolean validate(List<String> warnings) {
 		return true;
 	}

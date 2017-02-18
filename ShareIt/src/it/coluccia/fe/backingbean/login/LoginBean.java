@@ -1,18 +1,13 @@
 package it.coluccia.fe.backingbean.login;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.context.RequestContext;
-
 
 import it.coluccia.common.exception.ServiceException;
 import it.coluccia.fe.backingbean.base.BaseBean;

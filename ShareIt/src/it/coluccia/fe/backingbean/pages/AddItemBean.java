@@ -12,9 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.context.RequestContext;
@@ -43,6 +41,10 @@ import it.common.fe.utils.FacesMessageUtils;
 @ManagedBean(name = "addItemBean")
 public class AddItemBean extends BaseBean {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4405637333092455408L;
 	private final String CONFIRM_PHASE_ID = "confirmTab";
 	private final String LOCATION_PHASE_ID = "locationTab";
 	private final String DESCRIPTION_PHASE_ID = "descriptionTab";

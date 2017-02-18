@@ -62,7 +62,6 @@ descriptionRow #description {
 	width: 30px !important;
 }
 
-
 .message_input_area {
 	display: block;
 	margin-right: auto !important;
@@ -92,8 +91,9 @@ descriptionRow #description {
 }
 
 .headerAddItemSection {
-	font-size: 3em;
+	font-size: 2em;
 	font-weight: bolder;
+	margin-top: -20px;
 }
 
 .fisrtColumnWizard {
@@ -105,6 +105,11 @@ descriptionRow #description {
 .secondColumnWizard {
 	margin-bottom: 5px !important;
 	width: 90%;
+	height:80%;
+}
+
+.secondColumnWizard input{
+	height:80%;
 }
 
 .secondColumnWizard>input {
