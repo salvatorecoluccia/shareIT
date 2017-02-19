@@ -73,6 +73,7 @@ public class ProfileBean extends BaseBean {
 			logger.debug("retrieveItem bean end");
 		}
 		dataScrollerBean.setCurrentUser(currentUser);
+		dataScrollerBean.init();
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package it.coluccia.fe.backingbean.login;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -11,6 +13,7 @@ import org.primefaces.context.RequestContext;
 
 import it.coluccia.common.exception.ServiceException;
 import it.coluccia.fe.backingbean.base.BaseBean;
+import it.coluccia.shareit.dto.categories.shareitdb.Categories;
 import it.coluccia.shareit.login.EjbLoginLocal;
 import it.common.fe.utils.FacesMessageUtils;
 import it.common.fe.utils.FacesUtils;
@@ -35,6 +38,7 @@ public class LoginBean extends BaseBean {
 	private final String KEY_BODY_LOGIN_WRONG = "msg.body.login.wrong";
 	private final String KEY_TITLE_REGISTER_WRONG = "msg.title.register.wrong";
 	private final String KEY_BODY_REGISTER_WRONG_FILED_EMPTY = "msg.body.register.wrong.filedsempty";
+	private final String KEY_BODY_SERVICE_ERROR = "msg.body.service.error";
 
 	private final String BUNDLE_FILE = "it.coluccia.shareit.resources.LoginResources";
 	private final String MAPPED_NAME = "loginBean";
@@ -53,6 +57,7 @@ public class LoginBean extends BaseBean {
 	private String firstNameRegister;
 	private String lastNameRegister;
 	private String emailRegister;
+	
 
 	private String bundleName = BUNDLE_FILE;
 

@@ -1,9 +1,12 @@
 package it.coluccia.shareit.login;
 
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import it.coluccia.common.exception.ServiceException;
+import it.coluccia.shareit.dto.categories.shareitdb.Categories;
 
 @Local
 public interface EjbLoginLocal {

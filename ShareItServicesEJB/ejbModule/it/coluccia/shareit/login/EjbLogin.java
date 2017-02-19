@@ -17,7 +17,9 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import it.coluccia.common.exception.ServiceException;
 import it.coluccia.common.helper.ServiceHelper;
+import it.coluccia.shareit.dao.categories.shareitdb.CategoriesMapper;
 import it.coluccia.shareit.dao.users.shareitdb.UsersMapper;
+import it.coluccia.shareit.dto.categories.shareitdb.Categories;
 import it.coluccia.shareit.dto.users.shareitdb.Users;
 import it.coluccia.shareit.dto.users.shareitdb.UsersExample;
 
@@ -47,6 +49,8 @@ public class EjbLogin implements EjbLoginLocal {
 	public EjbLogin() {
 
 	}
+	
+	
 
 	/**
 	 * It validate an user login by google token specified by tokenId parameter.

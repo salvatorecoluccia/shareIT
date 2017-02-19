@@ -53,6 +53,8 @@ public class DataScrollerBean extends BaseBean {
 	private int maxCreditsFilter;
 
 	private Items currentItemSelectedForDelete;
+	
+	private HashMap<Integer,String> itemsCategories;
 
 	private final String KEY_TITLE_SERVICE_ERROR = "msg.error.service.title";
 	private final String KEY_BODY_RETRIEVE_ITEMS_ERROR = "msg.error.service.retrieveAllActiveItems.body";
@@ -81,6 +83,8 @@ public class DataScrollerBean extends BaseBean {
 			categoryNameFilter = null;
 			minCreditsFilter = -1;
 			maxCreditsFilter = -1;
+			itemsCategories = associateCategoriesNamesToItems();
+			
 
 		} catch (ServiceException e) {
 			logger.debug("erore durante retrieveAllActiveItems");
@@ -94,6 +98,20 @@ public class DataScrollerBean extends BaseBean {
 	@Override
 	public String getBundleName() {
 		return BUNDLE_FILE;
+	}
+	
+	private HashMap<Integer,String> associateCategoriesNamesToItems(){
+		HashMap<Integer,String> result = new HashMap<>();
+		if(items != null && categories != null){
+			for(Items item : items){
+				for(Categories category : categories){
+					if(item.getCategoryCode().equals(category.getId())){
+						result.put(item.getId(), category.getName());
+					}
+				}
+			}
+		}
+		return result;
 	}
 
 	private Map<Integer, String> generateMapItemsAddress() throws ServiceException {
@@ -289,5 +307,15 @@ public class DataScrollerBean extends BaseBean {
 	public void setItemsAddress(Map<Integer, String> itemsAddress) {
 		this.itemsAddress = itemsAddress;
 	}
+
+	public HashMap<Integer, String> getItemsCategories() {
+		return itemsCategories;
+	}
+
+	public void setItemsCategories(HashMap<Integer, String> itemsCategories) {
+		this.itemsCategories = itemsCategories;
+	}
+	
+	
 
 }
