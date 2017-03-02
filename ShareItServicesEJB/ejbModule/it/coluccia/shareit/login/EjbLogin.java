@@ -22,6 +22,7 @@ import it.coluccia.shareit.dao.users.shareitdb.UsersMapper;
 import it.coluccia.shareit.dto.categories.shareitdb.Categories;
 import it.coluccia.shareit.dto.users.shareitdb.Users;
 import it.coluccia.shareit.dto.users.shareitdb.UsersExample;
+import it.coluccia.shareit.dto.users.shareitdb.UsersExample.Criteria;
 
 /**
  * Implements the ejb layer for the login functionality. It is implemented like
@@ -110,7 +111,7 @@ public class EjbLogin implements EjbLoginLocal {
 			newUser.setActive(Short.parseShort("1"));
 			newUser.setAdmin(Short.parseShort("0"));
 			//newUser.setCredit(BigDecimal.ZERO);
-			newUser.setCredit(new BigDecimal(200));
+			newUser.setCredit(new BigDecimal(500));
 			newUser.setEmail(response.getEmail());
 			newUser.setFirstname(response.getGiven_name());
 			newUser.setLastname(response.getFamily_name());
@@ -120,7 +121,13 @@ public class EjbLogin implements EjbLoginLocal {
 			newUser.setPicture(response.getPicture());
 			mapper.insertSelective(newUser);
 		}
-		/* Se è già in DB non faccio nulla */
+		else{
+			/* Se è già in DB aggiorno solo la url dell'immagine */
+			Users usr = result.get(0);
+			usr.setPicture(response.getPicture());
+			mapper.updateByPrimaryKeySelective(usr);
+		}
+		
 
 	}
 

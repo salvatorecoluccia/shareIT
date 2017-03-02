@@ -25,4 +25,5 @@ public interface ShareItEjbLocal {
 	public List<Transactions> retrieveAllUserBuyerTransactions(Integer userId) throws ServiceException;
 	public List<Transactions> retrieveAllUserTransactions(List<Items> items)throws ServiceException;
 	public List<Items> retrieveAllSellItems() throws ServiceException;
+	public Categories retrieveCategoryById(Integer categoryId) throws ServiceException;
 }

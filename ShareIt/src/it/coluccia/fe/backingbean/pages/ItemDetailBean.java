@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import it.coluccia.common.exception.ServiceException;
 import it.coluccia.fe.backingbean.base.BaseBean;
 import it.coluccia.fe.backingbean.login.LoginBean;
+import it.coluccia.shareit.dto.categories.shareitdb.Categories;
 import it.coluccia.shareit.dto.items.shareitdb.Items;
 import it.coluccia.shareit.pages.ShareItEjbLocal;
 import it.common.fe.utils.FacesMessageUtils;
@@ -39,6 +40,7 @@ public class ItemDetailBean extends BaseBean {
 	private String messageToBuy;
 
 	private Items item;
+	private Categories itemCategory;
 	
     @ManagedProperty(value="#{loginBean}")
     private LoginBean loginBean;
@@ -60,6 +62,7 @@ public class ItemDetailBean extends BaseBean {
 		try {
 			logger.debug("retrieveItem bean start");
 			item = serviceLocal.retrieveItemById(itemId);
+			itemCategory = serviceLocal.retrieveCategoryById(item.getCategoryCode());
 		} catch (ServiceException e) {
 			logger.debug("erore durante retrieveItem");
 			FacesMessageUtils.addMessageErrorFromBundle(KEY_TITLE_SERVICE_ERROR, KEY_BODY_RETRIEVE_ITEM_ERROR,
@@ -134,6 +137,16 @@ public class ItemDetailBean extends BaseBean {
 	public void setLoginBean(LoginBean loginBean) {
 		this.loginBean = loginBean;
 	}
+
+	public Categories getItemCategory() {
+		return itemCategory;
+	}
+
+	public void setItemCategory(Categories itemCategory) {
+		this.itemCategory = itemCategory;
+	}
+	
+	
 	
 	
 	

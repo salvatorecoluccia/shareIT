@@ -55,7 +55,7 @@
 						displayTemplate="Between {min} and {max}" minValue="0"
 						maxValue="20000" />
 					<h:outputText id="displayRange"
-						value="Between #{dataScrollerBean.minCreditsFilter} and #{dataScrollerBean.maxCreditsFilter}" />
+						value="Between #{dataScrollerBean.minCreditsFilter == -1? '0':dataScrollerBean.minCreditsFilter} and #{dataScrollerBean.maxCreditsFilter == -1? '0' : dataScrollerBean.maxCreditsFilter}" />
 					<h:inputHidden id="minValue"
 						value="#{dataScrollerBean.minCreditsFilter}" />
 					<h:inputHidden id="maxValue"

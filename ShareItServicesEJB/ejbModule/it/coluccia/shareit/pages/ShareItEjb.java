@@ -365,5 +365,25 @@ public class ShareItEjb implements ShareItEjbLocal {
 		return result;
 
 	}
+	
+	/**
+	 * It retrieves a Categories object from its id
+	 */
+	public Categories retrieveCategoryById(Integer categoryId) throws ServiceException{
+		log.debug("Service retrieveCategoryById started");
+		Categories result;
+		try {
+			ServiceHelper.openDataBaseSession();
+			CategoriesMapper mapper = ServiceHelper.getMapper(CategoriesMapper.class);
+			result = mapper.selectByPrimaryKey(categoryId);
+		} catch (Exception e) {
+			log.error("Errore durante retrieveCategoryById", e);
+			throw new ServiceException("Errore durante retrieveCategoryById", e);
+		} finally {
+			ServiceHelper.closeDataBaseSession();
+			log.debug("Service retrieveCategoryById end");
+		}
+		return result;
+	}
 
 }
